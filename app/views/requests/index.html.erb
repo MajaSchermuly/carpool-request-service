@@ -16,15 +16,14 @@
 <table>
   <thead>
     <tr>
-      <th>Request</th>
       <th>Rider</th>
-      <th>Date</th>
-      <th>Pick up loc</th>
-      <th>Drop off loc</th>
-      <th>Num passengers</th>
-      <th>Attire</th>
-      <th>Additional info</th>
-      <th colspan="3"></th>
+	  <th>Status</th>
+      <th>Time</th>
+      <th>Pick Up Location</th>
+      <th>Drop Off Location</th>
+      <th>Num of Passengers</th>
+      <th>Additional Info</th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -32,14 +31,15 @@
     <% @requests.each do |request| %>
       <tr>
         <td><%= request.rider_id %></td>
-        <td><%= request.date %></td>
+		<td><%= request.request_status %></td>
+        <td><%= request.date_time %></td>
         <td><%= request.pick_up_loc %></td>
         <td><%= request.drop_off_loc %></td>
         <td><%= request.num_passengers %></td>
-        <td><%= request.attire %></td>
         <td><%= request.additional_info %></td>
         <td><%= link_to 'Show', request %></td>
         <td><%= link_to 'Edit', edit_request_path(request) %></td>
+		<td><%= link_to 'Cancel', request_cancel_path(request) %></td>
         <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

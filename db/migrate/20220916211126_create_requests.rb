@@ -5,11 +5,12 @@ class CreateRequests < ActiveRecord::Migration[6.1]
     create_table :requests, id: false do |t|
       t.primary_key :request_id
       t.integer :rider_id
-      t.datetime :date
+	  t.string :request_status
+      t.datetime :date_time
       t.string :pick_up_loc
+	  t.boolean :is_address_BCS
       t.string :drop_off_loc
       t.integer :num_passengers
-      t.string :attire
       t.string :additional_info
 
       t.timestamps

@@ -7,6 +7,7 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2] 
+		 
   #validates :username, presence: true
   #validates :password, presence: true
   #validates :emergency_contact_id, presence: true

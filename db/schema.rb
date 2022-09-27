@@ -73,45 +73,10 @@ ActiveRecord::Schema.define(version: 20_220_919_024_727) do
   end
 
 
-  create_table "admins", primary_key: "admin_id", force: :cascade do |t|
-    t.string "username"
-    t.string "password"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "car_rides", primary_key: "car_ride_id", force: :cascade do |t|
-    t.integer "request_id"
-    t.integer "driver_id"
-    t.integer "queue_pos"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "drivers", primary_key: "driver_id", force: :cascade do |t|
-    t.string "phone_number"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "car_model"
-    t.datetime "check_in_time"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "emergency_contacts", primary_key: "emergency_contact_id", force: :cascade do |t|
-    t.string "phone_number"
-    t.string "full_name"
-    t.string "relation"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "members", primary_key: "member_id", force: :cascade do |t|
-    t.integer "driver_id"
-    t.string "username"
-    t.string "password"
+    t.boolean "is_admin"
+    t.boolean "is_supervisor"
     t.decimal "leaderboard_points"
-    t.integer "emergency_contact_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
@@ -129,25 +94,15 @@ ActiveRecord::Schema.define(version: 20_220_919_024_727) do
 
   create_table "requests", primary_key: "request_id", force: :cascade do |t|
     t.integer "rider_id"
-    t.datetime "date"
+    t.string "request_status"
+    t.datetime "date_time"
     t.string "pick_up_loc"
+    t.boolean "is_address_BCS"
     t.string "drop_off_loc"
     t.integer "num_passengers"
-    t.string "attire"
     t.string "additional_info"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-
-  create_table "riders", primary_key: "rider_id", force: :cascade do |t|
-    t.string "phone_number"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "local_address"
-    t.integer "emergency_contact_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
 
 end
