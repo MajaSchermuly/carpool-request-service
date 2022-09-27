@@ -23,7 +23,7 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
 	@request.update_attribute(:request_status, 'In Progress')
-	
+
     respond_to do |format|
       if @request.save
         format.html { redirect_to request_url(@request), notice: 'Request was successfully created.' }
@@ -47,6 +47,7 @@ class RequestsController < ApplicationController
       end
     end
   end
+
   
   def cancel
     @request = Request.find(params[:request_id])
@@ -57,6 +58,7 @@ class RequestsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   # DELETE /requests/1 or /requests/1.json
   def destroy
@@ -78,5 +80,6 @@ class RequestsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def request_params
     params.require(:request).permit(:rider_id, :date_time, :pick_up_loc, :drop_off_loc, :num_passengers, :additional_info)
+
   end
 end
