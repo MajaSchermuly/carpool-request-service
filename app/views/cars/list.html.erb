@@ -1,0 +1,53 @@
+<h1 class="title">Cars on <%= @ndr&.start_time&.strftime('%d/%m/%Y') + " - " + @ndr&.end_time&.strftime('%d/%m/%Y') %> </h1>
+
+<p id="notice"><%= notice %></p>
+
+<div class="horiz-container hide-on-mobile-only">
+  <%= link_to "Cars", cars_list_path(:ndr_id => @ndr.ndr_id), :class => "green button small-margins" %>
+  <%= link_to "Drivers", drivers_list_path(:ndr_id => @ndr.ndr_id), :class => "grey button small-margins" %>
+  <%= link_to "Requests", requests_list_path(:ndr_id => @ndr.ndr_id), :class => "grey button small-margins" %>
+</div>
+
+<div class="view-table hide-on-mobile-only">
+  <table>
+    <thead>
+      <tr>
+        <th>Car</th>
+        <th>Color</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Plate Number</th>
+        <th>Registration Expiry</th>
+        <th>Assigned Drivers</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @cars&.each do |car| %>
+        <tr>
+          <td> <%= car&.car_id %> </td>
+          <td> <%= car&.color %> </td>
+          <td> <%= car&.make %> </td>
+          <td> <%= car&.model %> </td>
+          <td> <%= car&.plate_number %> </td>
+          <td> <%= car&.registration_expiry %> </td>
+          <td> <% @drivers&.each do |driver|%> 
+                <% member = Member.find_by(member_id: driver.member_id) %>
+                <%= member&.first_name + " " + member&.last_name %>
+               <% end %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= link_to "Add Car", new_car_path, :class => "blue button small-margins" %>
+
+<div class="show-on-mobile-only">
+  <div class="horiz card">
+    <p>
+      This page is designed to work on desktop devices only. <br>
+      Please try again on a non-mobile device.
+    </p>
+  </div>
+</div>

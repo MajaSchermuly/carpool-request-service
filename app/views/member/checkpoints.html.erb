@@ -1,0 +1,21 @@
+<h1 class="title">Your Points</h1>
+
+<br><br>
+
+<div class="card horiz">
+    <div class="centered">
+        <h2> You have </h2>
+
+        <% if @current_member.leaderboard_points.nil? %>
+        <h1 class="green-text"> 0 </h1>
+        <% else %>
+        <h1 class="green-text"> <%= @current_member.leaderboard_points %> </h1>
+        <% end %>
+    
+        <h2> points from previous rides </h2>
+    </div>
+</div>
+
+<br><br>
+
+<%= link_to 'Back', :back, class: "grey button" %>

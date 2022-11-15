@@ -1,0 +1,44 @@
+<h1 class="title">Requests & Rides on <%= @ndr&.start_time&.strftime('%d/%m/%Y') + " - " + @ndr&.end_time&.strftime('%d/%m/%Y') %> </h1>
+
+<p id="notice"><%= notice %></p>
+
+<div class="horiz-container hide-on-mobile-only">
+  <%= link_to "Cars", cars_list_path(:ndr_id => @ndr.ndr_id), :class => "grey button small-margins" %>
+  <%= link_to "Drivers", drivers_list_path(:ndr_id => @ndr.ndr_id), :class => "grey button small-margins" %>
+  <%= link_to "Requests", requests_list_path(:ndr_id => @ndr.ndr_id), :class => "green button small-margins" %>
+</div>
+
+<div class="view-table hide-on-mobile-only">
+  <table>
+    <thead>
+      <tr>
+        <th> Total Requests </th>
+        <th> Done </th>
+        <th> Canceled </th>
+        <th> Missed </th>
+        <th> Avg. Wait </th>
+        <th> Avg. Trip</th>
+        <th> Total People </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <td> <%= @cnt  %></td>
+      <td> <%= @done %></td>
+      <td> <%= @cancelled %></td>
+      <td> <%= @missed%></td>
+      <td> <%= @wait_avg %> </td>
+      <td> <%= @trip_avg %> </td>
+      <td> <%= @people %>
+    </tbody>
+  </table>
+</div>
+
+<div class="show-on-mobile-only">
+  <div class="horiz card">
+    <p>
+      This page is designed to work on desktop devices only. <br>
+      Please try again on a non-mobile device.
+    </p>
+  </div>
+</div>
