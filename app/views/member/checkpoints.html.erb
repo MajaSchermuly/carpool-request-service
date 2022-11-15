@@ -1,10 +1,6 @@
 <h1 class="title">Your Points</h1>
 
 <% if @current_member.leaderboard_points.nil? %>
-    <% @current_member.increment(:leaderboard_points, 1) %>
-<% end %>
-
-<% if @current_member.leaderboard_points.nil? %>
     <h3> You have: 0 points from previous rides </h3>
 <% else %>
     <h3> You have: <%= @current_member.leaderboard_points %> points from previous rides </h1>
