@@ -4,3 +4,13 @@
 <%= render 'form_checkin', driver: @driver %>
 
 <%= link_to 'Back', root_path, class: "grey button" %>
+
+# saves points when driver completes ride
+<% testing = Driver.find_by(member_id: current_member.member_id, ndr_id: Ndr.find_by(is_active: true)) %>
+<% testing1 = Member.find_by(member_id: current_member.member_id) %>
+<% if testing.driver_status && !testing.driver_status.empty? %>
+    <% if testing.driver_status.eql? 'Dropped Off Rider' %>
+        <% testing1.increment(:leaderboard_points, 1) %>
+        <% testing1.save %>
+    <% end %>
+<% end %>
