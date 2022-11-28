@@ -16,7 +16,11 @@ class Member < ApplicationRecord
   # validates :first_name, presence: true
   # validates :last_name, :first_name, :is_male, :phone, :address, :emergency_full_name, :emergency_phone_number, presence: true, on: [:update]
   validates :last_name, :first_name, :address, presence: true, if: :valid_non_provider?
-  validate :validate_email_on_whitelist, if: :valid_non_provider?
+  validate :validate_email_on_whitelist #if: :valid_non_provider?
+
+  def valid_non_provider?
+    provider.nil?
+  end
 
   def validate_email_on_whitelist
     email = self.email
@@ -29,9 +33,7 @@ class Member < ApplicationRecord
   # validates :parent_number, phone_number: { format: /^(?:(?:[2-9]11)|(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:\x20+|#|x\.?|ext\.?|extension)\s*(\d+))?)$/i }, if: :valid_non_provider?
   # validates :emergency_2_phone_number, phone_number: { format: /^(?:(?:[2-9]11)|(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:\x20+|#|x\.?|ext\.?|extension)\s*(\d+))?)$/i }, if: :valid_non_provider?
 
-  def valid_non_provider?
-    provider.nil?
-  end
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |member|

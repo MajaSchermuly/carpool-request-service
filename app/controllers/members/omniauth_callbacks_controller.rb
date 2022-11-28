@@ -11,7 +11,7 @@ module Members
     def google_oauth2
       member = Member.from_omniauth(auth)
 
-      if member.present? && Whitelist.exists?(email: member.email)
+      if member.present?
         sign_out_all_scopes
         flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
         sign_in_and_redirect member, even: :authentifciation
