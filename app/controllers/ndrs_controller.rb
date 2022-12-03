@@ -5,7 +5,11 @@ class NdrsController < ApplicationController
   helper_method :get_join_status
   # GET /ndrs or /ndrs.json
   def index
-    @ndrs = Ndr.all
+    @ndrs = if current_member.is_admin || current_member.is_supervisor
+              Ndr.all
+            else
+              Ndr.where(is_active: true) + Ndr.where(is_active: false).where(end_time: DateTime.now..)
+            end
   end
 
   # GET /ndrs/1 or /ndrs/1.json
@@ -60,6 +64,41 @@ class NdrsController < ApplicationController
   # Detect if member has already signed up for ndr
   def get_join_status(test_ndr, test_member)
     Driver.find_by(ndr_id: test_ndr.ndr_id, member_id: test_member.member_id).nil?
+  end
+
+  # GET button_control
+  def button_control
+    if current_member.is_admin
+      @curr_ndr = Ndr.find_by(is_active: true)
+      if !@curr_ndr.nil?
+        @ndr_active = true
+        @active = @curr_ndr.button_override != true
+      else
+        @ndr_active = false
+      end
+    else
+      redirect_to :root
+    end
+  end
+
+  # POST button_control
+  def disable_button
+    @dis_ndr = Ndr.find_by(is_active: true)
+    unless @dis_ndr.nil?
+      @dis_ndr.update_attribute(:button_override, true)
+      @active = false
+    end
+    redirect_to :button_control
+  end
+
+  # POST button_control
+  def enable_button
+    @dis_ndr = Ndr.find_by(is_active: true)
+    unless @dis_ndr.nil?
+      @dis_ndr.update_attribute(:button_override, false)
+      @active = true
+    end
+    redirect_to :button_control
   end
 
   private

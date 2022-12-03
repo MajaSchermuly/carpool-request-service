@@ -64,9 +64,6 @@
               <%= link_to "Assigned Rider", member_rider_info_path %>
               <%= link_to 'Check In', drivers_checkin_path %>
               <%= link_to 'Your Points', members_check_points_path %>
-              <% if current_member.is_admin %>
-                <%= link_to "Admin", whitelists_path %>
-              <% end %>
             </div>  
           <% end %>
         </div>
@@ -96,11 +93,14 @@
   </div>
 
   <footer>
-    <div class = "horiz-container footer">
-      <a class="first link", href="https://docs.google.com/forms/d/e/1FAIpQLSfFQbgFNL3UFEO6JHnEKblD1kNm8sNUOT-xXPAsWtZJzxPAbg/viewform?usp=sf_link", target="_blank">Experiencing a bug?</a>
-      <a class="link", href="https://docs.google.com/forms/d/e/1FAIpQLSfKm1sTCg7KChda6nJa7Y45Uk_3nft1zAPmIWswDYxPT4FowQ/viewform?usp=sf_link", target="_blank">Have a suggestion?</a>
+    <div class="footer-bar"></div>
+    <% if !current_member.nil? %>
+    <div class="horiz-container footer">
+      <a class="spaced link", href="https://docs.google.com/forms/d/e/1FAIpQLSfFQbgFNL3UFEO6JHnEKblD1kNm8sNUOT-xXPAsWtZJzxPAbg/viewform?usp=sf_link", target="_blank">Experiencing a bug?</a>
+      <a class="spaced link", href="https://docs.google.com/forms/d/e/1FAIpQLSfKm1sTCg7KChda6nJa7Y45Uk_3nft1zAPmIWswDYxPT4FowQ/viewform?usp=sf_link", target="_blank">Have a suggestion?</a>
       <a class="link", href="<%= home_doc_path %>">Documentation</a>
     </div>
+    <% end %>
   </footer>
 
 </html>

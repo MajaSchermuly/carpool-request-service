@@ -4,25 +4,34 @@
     <p id="notice"><%= notice %></p>
     <div class="centered card-item">
         <br><br>
-        <% if !Ndr.find_by(is_active: true).nil? %>
+        <% current_ndr = Ndr.find_by(is_active: true)%>
+        <% if !current_ndr.nil? && !current_ndr&.button_override%>
             <p class="">Need a Ride? Click the button below.</p>
             <%= link_to 'Request a Ride', new_request_path, :class => "green button large large-text" %>
         <% else %>
-            <h3 class="centered">Sorry! We are currently not accepting ride requests.</h3>
+            <h3 class="centered">Sorry! We are not currently accepting ride requests.</h3>
             <p class="">
-                We usually operate every Friday and Saturday from 10:00pm to 3:00am.<br>
-                Please check again later. 
+                <em>
+                    We usually operate every Friday and Saturday from 10:00pm to 3:00am.<br>
+                    Please check again later.
+                </em>
             </p>
-            <p class="">If you have any questions, Give us a call at 979-693-9905</p>
+
+            <br>
+
+            <p class="">
+                If you have any questions, give us a call at <a href="tel:+19796939905" class="green-text">(979) 693-9905</a><br><br>
+                or visit our website at <a href="https://carpool.tamu.edu/" class="green-text">carpool.tamu.edu</a>
+            </p>
         <% end %>
         <br><br>
     </div>
 
-    <% if !Ndr.find_by(is_active: true).nil? %>
+    <% if !current_ndr.nil? %>
         <hr>
     <% end %>
-
-    <% if !Ndr.find_by(is_active: true).nil? %>
+ 
+    <% if !current_ndr.nil? && !current_ndr&.button_override%>
         <div class="card-item">
             <%= render 'assignments/form_rider', request: @request %>
         </div>

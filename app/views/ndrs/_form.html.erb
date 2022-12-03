@@ -16,14 +16,14 @@
         <h2>Start</h2>
         <div class="field centered">
           <%= form.label :start_time, "Date" %>
-          <div class="field row">
+          <div class="field row date">
             <%= form.date_select :start_time, ignore_time: true, order: [:month, :day, :year], start_year: Date.today.year, end_year: Date.today.year + 4 %>
           </div>
         </div>
 
         <div class="field centered">
           <%= form.label :start_time, "Time"  %>
-          <div class="field row">
+          <div class="field row date">
             <%= form.time_select :start_time, ignore_date: true, ampm: true, time_seperator: ""  %>
           </div>
         </div>
@@ -33,14 +33,14 @@
         <h2>End</h2>
         <div class="field centered">
           <%= form.label :end_time, "Date"  %>
-          <div class="field row">
+          <div class="field row date">
           <%= form.date_select :end_time, ignore_time: true, order: [:month, :day, :year], start_year: Date.today.year, end_year: Date.today.year + 4  %>
           </div>
         </div>
 
         <div class="field centered">
           <%= form.label :end_time, "Time"  %>
-          <div class="field row">
+          <div class="field row date">
             <%= form.time_select :end_time, ignore_date: true, ampm: true, time_seperator: ''%>
           </div>
         </div>

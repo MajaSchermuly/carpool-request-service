@@ -1,0 +1,35 @@
+<h1 class="title">Whitelist</h1>
+
+<br><br>
+
+<div class="horiz-container">
+    <% if current_member.is_supervisor %>
+    <%= link_to 'Button Control', button_control_path, :class => "green button small-margins" %>
+  <% end %>
+  <%= link_to 'Whitelisting', whitelists_path, :class => "grey button small-margins" %>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<% if current_member.is_admin%>
+  <%if @ndr_active %>
+    <% if @active == true %>
+      <%= button_to "Disable", disable_button_path, :class => "blue button small-margins" %>
+    <% else %>
+      <%= button_to "Enable", enable_button_path, :class => "blue button small-margins" %>
+    <% end %>
+  <% else %>
+    <p> Please start an NDR to enable the Request A Ride button. </p>
+  <% end %>
+<% end %>
+
+<br><br>
+
+<div class="show-on-mobile-only">
+  <div class="horiz card">
+    <p>
+      This page is designed to work on desktop devices only. <br>
+      Please try again on a non-mobile device.
+    </p>
+  </div>
+</div>

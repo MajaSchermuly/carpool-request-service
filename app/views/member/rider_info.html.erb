@@ -1,12 +1,46 @@
 <h1 class="title">Rider Information</h1>
 
+<br><br>
 <% @ride_info.each do |ride| %>
-  <tr>
-    <td><%= ride.name %></td> 
-    <td><%= ride.phone_number %></td> 
-    <td><%= ride.pick_up_loc %></td> 
-    <td><%= ride.drop_off_loc %></td> 
-    <td><%= ride.num_passengers %></td> 
-    <td><%= ride.additional_info %></td> 
-  </tr>
+  <div class="view-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Rider Name</th>
+          <th>Phone #</th>
+          <th>Passengers</th>
+        </tr>
+      </thead>
+
+      <tbody>
+          <tr>
+            <td><%= ride.name %></td> 
+            <td><%= ride.phone_number %></td> 
+            <td><%= ride.num_passengers %></td> 
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br><br>
+
+  <div class="view-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Pick Up Location</th>
+          <th>Drop Off Location</th>
+          <th>Additional Information</th>
+        </tr>
+      </thead>
+
+      <tbody>
+          <tr>
+            <td><%= ride.pick_up_loc %></td> 
+            <td><%= ride.drop_off_loc %></td> 
+            <td><%= ride.additional_info %></td> 
+          </tr>
+      </tbody>
+    </table>
+  </div>
 <% end %>

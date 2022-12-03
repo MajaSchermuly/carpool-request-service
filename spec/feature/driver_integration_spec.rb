@@ -26,7 +26,7 @@ RSpec.describe 'Joining ndr as driver', type: :feature do
     check 'Start Now?'
     click_on 'Create Ndr'
     visit ndrs_path
-    expect(page).to have_content('Active')
+    expect(page).to have_text('Active')
     # click_on 'Join'
     # click_on 'Confirm Sign-Up'
     # visit ndrs_path
@@ -57,7 +57,7 @@ RSpec.describe 'Leaving ndr as driver', type: :feature do
     check 'Start Now?'
     click_on 'Create Ndr'
     visit ndrs_path
-    expect(page).to have_content('Active')
+    expect(page).to have_text('Active')
     # click_on 'Join'
     # click_on 'Confirm Sign-Up'
     # visit ndrs_path

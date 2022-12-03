@@ -39,7 +39,7 @@
             
             <% if ndr.is_active %>
               <td>Active</td>
-            <% elsif DateTime.now >= ndr.end_time && ndr.is_active = false %>
+            <% elsif DateTime.now < ndr.end_time %>
               <td>Scheduled</td>
             <% else %>
               <td>Done</td>

@@ -2,13 +2,20 @@
 
 <br><br>
 
-<%= link_to 'Add Email', new_whitelist_path, class: "green button" %>
+<div class="horiz-container">
+  <% if current_member&.is_supervisor %>
+    <%= link_to 'Button Control', button_control_path, :class => "grey button small-margins" %>
+  <% end %>
+  <%= link_to 'Whitelisting', whitelists_path, :class => "green button small-margins" %>
+</div>
 
 <p id="notice"><%= notice %></p>
 
-<br>
+<%= link_to 'Add Email', new_whitelist_path, class: "blue button  hide-on-mobile-only" %>
 
-<div class="view-table">
+<br><br>
+
+<div class="view-table hide-on-mobile-only">
   <table>
     <thead>
       <tr>
@@ -27,4 +34,13 @@
       <% end %>
     </tbody>
   </table>
+</div>
+
+<div class="show-on-mobile-only">
+  <div class="horiz card">
+    <p>
+      This page is designed to work on desktop devices only. <br>
+      Please try again on a non-mobile device.
+    </p>
+  </div>
 </div>

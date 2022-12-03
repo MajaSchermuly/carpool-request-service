@@ -5,8 +5,8 @@ class MemberController < ApplicationController
 
   def index; end
 
-  # GET /member/checkpoints
-  def checkpoints
+  # GET /member/check_points
+  def check_points
     @current_member = Member.find_by(member_id: current_member.member_id)
   end
 

@@ -10,12 +10,17 @@ Rails.application.routes.draw do
 
   get 'ndrs', to: 'ndrs#index'
 
+  # Manual Control of request button
+  get '/button_control', to: 'ndrs#button_control'
+  post '/disable_button', to: 'ndrs#disable_button'
+  post '/enable_button', to: 'ndrs#enable_button'
+
   get 'history', to: 'history#index'
   get '/member/rider_info', to: 'member#rider_info'
   get 'no_ride_assigned', to: 'member#no_ride_assigned'
   get '/member/all_statuses', to: 'member#all_statuses'
   get '/member/overview', to: 'member#overview'
-  get '/checkpoints', to: 'member#checkpoints', as: 'members_check_points'
+  get '/check_points', to: 'member#check_points', as: 'members_check_points'
 
   get '/incoming', to: 'requests#incoming', as: 'requests_incoming'
   get '/waiting', to: 'requests#waiting', as: 'requests_waiting'
