@@ -42,6 +42,10 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails'
 
+  #Mail Sender
+  gem 'foreman'
+  gem 'letter_opener'
+
   # Gems for testing Devise
   gem 'factory_bot_rails'
   gem 'faker'
@@ -84,3 +88,6 @@ gem 'seed_dump'
 
 # Enable AJAX/JQuery support for cool browser CSS tricks
 gem 'jquery-rails'
+
+#Forgot password
+gem 'sendgrid-ruby'

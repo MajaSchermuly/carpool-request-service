@@ -21,9 +21,9 @@ class RequestsController < ApplicationController
     @requests&.each do |request|
       assignment = Assignment.find_by_request_id(request&.request_id)
       @wait_avg = if @wait_avg.nil?
-                    time_waiting(assignment)
+                    time_waiting(request)
                   else
-                    @wait_avg + time_waiting(assignment)
+                    @wait_avg + time_waiting(request)
                   end
 
       @trip_avg = if @trip_avg.nil?
@@ -34,13 +34,13 @@ class RequestsController < ApplicationController
     end
 
     @wait_avg = if !@wait_avg.nil?
-                  @wait_avg / @requests.count
+                  (@wait_avg.to_f / @requests.count)
                 else
                   0
                 end
 
     @trip_avg = if !@trip_avg.nil?
-                  @trip_avg / @requests.count
+                  (@trip_avg.to_f / @requests.count)
                 else
                   0
                 end
@@ -221,4 +221,19 @@ class RequestsController < ApplicationController
   def request_params
     params.require(:request).permit(:name, :phone_number, :request_status, :pick_up_loc, :drop_off_loc, :num_passengers, :additional_info)
   end
+
+  def time_waiting(request)
+    "#{((DateTime.now - request.created_at.to_datetime) * 24 * 60).to_i}m"
+  end
+
+  def time_rode(assignment)
+    # making sure drop off time was specified
+    if assignment.drop_off_time
+      "#{((assignment.drop_off_time.to_datetime - assignment.created_at.to_datetime) * 24 * 60).to_i}m"
+    # otherwise default to ''
+    else
+      ''
+    end
+  end
+
 end
