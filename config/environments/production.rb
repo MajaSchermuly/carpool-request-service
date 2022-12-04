@@ -73,7 +73,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => true,
+    enable_starttls_auto: true,
     address: 'smtp.sendgrid.net',
     port: 587,
     domain: 'carpool-main-branch.herokuapp.com',
