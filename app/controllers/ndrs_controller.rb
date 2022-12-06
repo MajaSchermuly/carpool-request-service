@@ -52,25 +52,25 @@ class NdrsController < ApplicationController
       end
     end
   end
-  
+
   # PATCH/PUT /ndrs/1/start
   def start
     @curr_ndr = Ndr.find(params[:ndr_id])
     @curr_ndr.update_attribute(:is_active, true)
     @curr_ndr.update_attribute(:start_time, DateTime.now)
-  
+
     respond_to do |format|
       format.html { redirect_to ndrs_url, notice: 'Ndr was successfully started.' }
       format.json { head :no_content }
     end
   end
-  
+
   # PATCH/PUT /ndrs/1/stop
   def stop
     @curr_ndr = Ndr.find(params[:ndr_id])
     @curr_ndr.update_attribute(:is_active, false)
     @curr_ndr.update_attribute(:end_time, DateTime.now)
-  
+
     respond_to do |format|
       format.html { redirect_to ndrs_url, notice: 'Ndr was successfully stopped.' }
       format.json { head :no_content }

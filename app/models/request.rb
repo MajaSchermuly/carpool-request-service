@@ -21,26 +21,29 @@ class Request < ApplicationRecord
   end
 
   def self.done
-    if @ndr = Ndr.find_by(is_active: true)
-      Request.where("created_at > ? and created_at < ?", @ndr.start_time, @ndr.end_time).where(request_status: 'Done').count
+    @ndr = Ndr.find_by(is_active: true)
+    if @ndr
+      Request.where('created_at > ? and created_at < ?', @ndr.start_time, @ndr.end_time).where(request_status: 'Done').count
     else
-	  '0'
+      '0'
     end
   end
 
   def self.missed
-    if @ndr = Ndr.find_by(is_active: true)
-      Request.where("created_at > ? and created_at < ?", @ndr.start_time, @ndr.end_time).where(request_status: 'Missed').count
+    @ndr = Ndr.find_by(is_active: true)
+    if @ndr
+      Request.where('created_at > ? and created_at < ?', @ndr.start_time, @ndr.end_time).where(request_status: 'Missed').count
     else
-	  '0'
+      '0'
     end
   end
 
   def self.cancelled
-    if @ndr = Ndr.find_by(is_active: true)
-      Request.where("created_at > ? and created_at < ?", @ndr.start_time, @ndr.end_time).where(request_status: 'Cancelled').count
+    @ndr = Ndr.find_by(is_active: true)
+    if @ndr
+      Request.where('created_at > ? and created_at < ?', @ndr.start_time, @ndr.end_time).where(request_status: 'Cancelled').count
     else
-	  '0'
+      '0'
     end
   end
 
