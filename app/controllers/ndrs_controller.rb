@@ -31,7 +31,7 @@ class NdrsController < ApplicationController
     @ndr.member_id = current_member
     respond_to do |format|
       if @ndr.save
-        format.html { redirect_to ndr_url(@ndr), notice: 'Ndr was successfully created.' }
+        format.html { redirect_to ndrs_url, notice: 'Ndr was successfully created.' }
         format.json { render :show, status: :created, location: @ndr }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -44,7 +44,7 @@ class NdrsController < ApplicationController
   def update
     respond_to do |format|
       if @ndr.update(ndr_params)
-        format.html { redirect_to ndr_url(@ndr), notice: 'Ndr was successfully updated.' }
+        format.html { redirect_to ndrs_url, notice: 'Ndr was successfully updated.' }
         format.json { render :show, status: :ok, location: @ndr }
       else
         format.html { render :edit, status: :unprocessable_entity }
