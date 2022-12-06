@@ -26,7 +26,7 @@ RSpec.describe 'Creating an ndr', type: :feature do
     fill_in 'Password confirmation', with: 'neone99'
     click_on 'Sign up'
   end
-  
+
   scenario 'valid inputs' do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
@@ -66,7 +66,7 @@ RSpec.describe 'Editing an ndr', type: :feature do
     check 'Start Now?'
     click_on 'Create Ndr'
   end
-  
+
   scenario 'valid inputs' do
     visit edit_ndr_path(Ndr.find_by_is_active(true))
     fill_in 'How many members need to attend?', with: 3

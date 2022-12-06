@@ -111,7 +111,7 @@ RSpec.describe 'Updating an assignment', type: :feature do
     select('Toyota Camry Red', from: 'assignment_car_id')
     click_on 'Create Assignment'
   end
-  
+
   scenario 'update inputs' do
     visit edit_assignment_path(Assignment.find_by_request_id(Request.find_by_phone_number('2105270414')))
     select('Toyota Prius Blue', from: 'assignment_car_id')

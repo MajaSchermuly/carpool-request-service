@@ -71,7 +71,7 @@ RSpec.describe 'Updating a car', type: :feature do
     fill_in 'Plate number', with: 'PZ65 BYV'
     click_on 'Create Car'
   end
-  
+
   scenario 'update inputs' do
     visit edit_car_path(Car.find_by_make('Toyota'))
     fill_in 'Plate number', with: 'PZ6S BYX'

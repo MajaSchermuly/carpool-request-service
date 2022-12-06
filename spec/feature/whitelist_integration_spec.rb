@@ -37,7 +37,7 @@ RSpec.describe 'Editing a whitelist', type: :feature do
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
   end
-  
+
   scenario 'update inputs' do
     visit edit_whitelist_path(Whitelist.find_by_email('reb_pendra@gmail.com'))
     fill_in 'Email', with: 'reb_pendragon@gmail.com'
@@ -45,7 +45,7 @@ RSpec.describe 'Editing a whitelist', type: :feature do
     visit whitelists_path
     expect(page).to have_content('reb_pendragon@gmail.com')
   end
-  
+
   scenario 'update inputs, invalid email' do
     visit edit_whitelist_path(Whitelist.find_by_email('reb_pendra@gmail.com'))
     fill_in 'Email', with: ''
@@ -65,8 +65,8 @@ RSpec.describe 'Deleting a whitelist', type: :feature do
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     expect(page).to have_content('reb_pendra@gmail.com')
-	# visit whitelists_path
-	# click_on 'Remove', match: :last
-	# expect(page).not_to have_content('reb_pendra@gmail.com')
+    # visit whitelists_path
+    # click_on 'Remove', match: :last
+    # expect(page).not_to have_content('reb_pendra@gmail.com')
   end
 end
