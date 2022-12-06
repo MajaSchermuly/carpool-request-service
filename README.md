@@ -47,7 +47,7 @@ rails s -b 0.0.0.0
 You can view the app by visiting http://localhost:3000/
 
 ## 📲 Deployment
-To deploy to the staging Heroku App, just merge changes into he test branch. For the main app, merge to the main branch.
+To deploy to the staging Heroku App, just merge changes into the test branch. For the main app, merge to the main branch.
 
 ## 🩺 Support
 Admins needing support can view the support document. Users who need help or have questions/concerns may contact CARPOOL.
@@ -61,6 +61,3 @@ Admins needing support can view the support document. Users who need help or hav
 * Terry Ruhge
 * Miguel Urbina
 * John Nichols
-
-## 🎉 Acknowledgements
-* TBD

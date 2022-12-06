@@ -1,52 +1,69 @@
 <h1 class="title">Home</h1>
 
 <div class="card">
-    <p id="notice"><%= notice %></p>
-    <div class="centered card-item">
-        <br><br>
-        <% current_ndr = Ndr.find_by(is_active: true)%>
-        <% if !current_ndr.nil? && !current_ndr&.button_override%>
-            <p class="">Need a Ride? Click the button below.</p>
-            <%= link_to 'Request a Ride', new_request_path, :class => "green button large large-text" %>
-        <% else %>
-            <h3 class="centered">Sorry! We are not currently accepting ride requests.</h3>
-            <p class="">
-                <em>
-                    We usually operate every Friday and Saturday from 10:00pm to 3:00am.<br>
-                    Please check again later.
-                </em>
-            </p>
+  <p id="notice"><%= notice %></p>
+  <div class="centered card-item">
+    <br><br>
+    <% current_ndr = Ndr.find_by(is_active: true) %>
+    <% if !current_ndr.nil? && !current_ndr&.button_override %>
+      <p class="">Need a Ride? Click the button below.</p>
+      <%= link_to 'Request a Ride', new_request_path, :class => "green button large large-text" %>
 
-            <br>
+      <br><br>
 
-            <p class="">
-                If you have any questions, give us a call at <a href="tel:+19796939905" class="green-text">(979) 693-9905</a><br><br>
-                or visit our website at <a href="https://carpool.tamu.edu/" class="green-text">carpool.tamu.edu</a>
-            </p>
-        <% end %>
-        <br><br>
+      <p>
+        If you have any questions, give us a call:
+        <br>
+        <a href="tel:+19796939905" class="green-text">(979) 693-9905</a><br><br>
+        or visit our website at
+        <a href="https://carpool.tamu.edu/" class="green-text">carpool.tamu.edu</a>
+
+      </p>
+    <% else %>
+      <h3 class="centered">Sorry! We are not currently accepting ride requests.</h3>
+      <p class="">
+        <em>
+          We usually operate every Friday and Saturday from 10:00pm to 3:00am.<br>
+          Please check again later.
+        </em>
+      </p>
+
+      <br>
+
+      <p class="">
+        If you have any questions, give us a call at
+        <a href="tel:+19796939905" class="green-text">(979) 693-9905</a><br><br>
+        or visit our website at
+        <a href="https://carpool.tamu.edu/" class="green-text">carpool.tamu.edu</a>
+      </p>
+    <% end %>
+    <br><br>
+  </div>
+
+  <% if !current_ndr.nil? %>
+    <hr>
+  <% end %>
+
+  <% if !current_ndr.nil? && !current_ndr&.button_override %>
+    <div class="card-item">
+      <%= render 'assignments/form_rider', request: @request %>
     </div>
-
-    <% if !current_ndr.nil? %>
-        <hr>
-    <% end %>
- 
-    <% if !current_ndr.nil? && !current_ndr&.button_override%>
-        <div class="card-item">
-            <%= render 'assignments/form_rider', request: @request %>
-        </div>
-    <% end %>
+  <% end %>
 </div>
 
 <% if current_member %>
 <% else %>
-    <div class="centered">
-        <br><br>
-        <p class=""> Are you a CARPOOL member?</p>
-        <%= link_to "LOGIN", new_member_session_path, :class => "grey button" %>
-        
-        <div>
-            <p> Don't have an account yet? <%= link_to "Sign Up", new_member_registration_path, class: "link" %> </p>
-        </div>
+  <div class="centered">
+    <br><br>
+    <p class="">
+      Are you a CARPOOL member?</p>
+    <%= link_to "LOGIN", new_member_session_path, :class => "grey button" %>
+
+    <div>
+      <p>
+        Don't have an account yet?
+        <%= link_to "Sign Up", new_member_registration_path, class: "link" %>
+      </p>
     </div>
+  </div>
 <% end %>

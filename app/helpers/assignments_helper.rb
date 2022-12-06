@@ -16,7 +16,7 @@ module AssignmentsHelper
   def time_home(assignment)
     # making sure drop off time was specified
     if assignment.drop_off_time
-      assignment.drop_off_time.to_datetime.in_time_zone('America/Chicago').strftime('%I:%M %p')
+      assignment.drop_off_time.to_datetime.in_time_zone('Central Time (US & Canada)').strftime('%I:%M %p')
     # otherwise default to ''
     else
       ''

@@ -50,36 +50,11 @@
               <td class="b-cell"> <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
               <%# Start the NDR, setting start_time to the current time %>
               <% if !ndr.is_active && DateTime.now < ndr.end_time %>
-                <td class="b-cell"> <%= button_to 'Start', ndr, method: :put, 
-                  params: {:ndr => {
-                    :ndr_id => ndr.id,
-                    :is_active => true,
-                    :member_id => ndr.member_id,
-                    :start_time => DateTime.now,
-                    :end_time => ndr.end_time,
-                    :members_needed => ndr.members_needed,
-                    :num_members_desired => ndr.num_members_desired,
-                    :num_members_signed_up => ndr.num_members_signed_up,
-                    :dues_restrict => ndr.dues_restrict,
-                    :training_restrict => ndr.training_restrict
-                  }}, class: "green table button"
-                %> </td>
+                <td class="b-cell"> <%= button_to 'Start', ndr_start_path(ndr), class: "green table button" %> </td>
 
                 <%# Stop the NDR, setting end_time to the current time %>
               <% elsif ndr.is_active %>
-                <td class="b-cell"> <%= button_to 'Stop', ndr, method: :put,
-                  params: {:ndr => {
-                    :ndr_id => ndr.id,
-                    :is_active => false,
-                    :member_id => ndr.member_id,
-                    :start_time => ndr.start_time,
-                    :end_time => DateTime.now - (1/1440.0),
-                    :members_needed => ndr.members_needed,
-                    :num_members_desired => ndr.num_members_desired,
-                    :num_members_signed_up => ndr.num_members_signed_up,
-                    :dues_restrict => ndr.dues_restrict,
-                    :training_restrict => ndr.training_restrict
-                  }}, class: "green table button"
+                <td class="b-cell"> <%= button_to 'Stop', ndr_stop_path(ndr), class: "green table button"
                 %> </td>
               <% else %>
                 <td>----</td>
