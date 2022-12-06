@@ -5,10 +5,15 @@ require 'rails_helper'
 
 RSpec.describe 'Joining ndr as driver', type: :feature do
   scenario 'valid join' do
+    visit new_member_session_path
+    fill_in 'Email', with: 'testuser@gmail.com'
+    fill_in 'Password', with: 'Change*Password'
+    click_on 'LOGIN'
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     visit root_path
+    click_on 'Logout', match: :first
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
@@ -27,19 +32,24 @@ RSpec.describe 'Joining ndr as driver', type: :feature do
     click_on 'Create Ndr'
     visit ndrs_path
     expect(page).to have_text('Active')
-    # click_on 'Join'
-    # click_on 'Confirm Sign-Up'
-    # visit ndrs_path
-    # expect(page).to have_content('Leave')
+    click_on 'Join'
+    click_on 'Confirm Sign-Up'
+    visit ndrs_path
+    expect(page).to have_content('Leave')
   end
 end
 
 RSpec.describe 'Leaving ndr as driver', type: :feature do
   scenario 'valid leave' do
+    visit new_member_session_path
+    fill_in 'Email', with: 'testuser@gmail.com'
+    fill_in 'Password', with: 'Change*Password'
+    click_on 'LOGIN'
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     visit root_path
+    click_on 'Logout', match: :first
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
@@ -58,9 +68,9 @@ RSpec.describe 'Leaving ndr as driver', type: :feature do
     click_on 'Create Ndr'
     visit ndrs_path
     expect(page).to have_text('Active')
-    # click_on 'Join'
-    # click_on 'Confirm Sign-Up'
-    # visit ndrs_path
-    # expect(page).to have_content('Leave')
+    click_on 'Join'
+    click_on 'Confirm Sign-Up'
+    visit ndrs_path
+    expect(page).to have_content('Leave')
   end
 end
