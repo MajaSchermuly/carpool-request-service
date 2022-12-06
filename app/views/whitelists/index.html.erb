@@ -2,11 +2,18 @@
 
 <br><br>
 
-<%= link_to 'Add Email', new_whitelist_path, class: "green button  hide-on-mobile-only" %>
+<div class="horiz-container">
+  <% if current_member&.is_supervisor %>
+    <%= link_to 'Button Control', button_control_path, :class => "grey button small-margins" %>
+  <% end %>
+  <%= link_to 'Whitelisting', whitelists_path, :class => "green button small-margins" %>
+</div>
 
 <p id="notice"><%= notice %></p>
 
-<br>
+<%= link_to 'Add Email', new_whitelist_path, class: "blue button  hide-on-mobile-only" %>
+
+<br><br>
 
 <div class="view-table hide-on-mobile-only">
   <table>

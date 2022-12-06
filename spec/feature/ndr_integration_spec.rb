@@ -4,11 +4,16 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating an ndr', type: :feature do
-  scenario 'valid inputs' do
+  before(:each) do
+    visit new_member_session_path
+    fill_in 'Email', with: 'testuser@gmail.com'
+    fill_in 'Password', with: 'Change*Password'
+    click_on 'LOGIN'
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     visit root_path
+    click_on 'Logout', match: :first
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
@@ -20,9 +25,13 @@ RSpec.describe 'Creating an ndr', type: :feature do
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
     click_on 'Sign up'
+  end
+
+  scenario 'valid inputs' do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
     select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
     check 'Start Now?'
     click_on 'Create Ndr'
     visit ndrs_path
@@ -31,11 +40,16 @@ RSpec.describe 'Creating an ndr', type: :feature do
 end
 
 RSpec.describe 'Editing an ndr', type: :feature do
-  scenario 'valid inputs' do
+  before(:each) do
+    visit new_member_session_path
+    fill_in 'Email', with: 'testuser@gmail.com'
+    fill_in 'Password', with: 'Change*Password'
+    click_on 'LOGIN'
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     visit root_path
+    click_on 'Logout', match: :first
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
@@ -50,8 +64,12 @@ RSpec.describe 'Editing an ndr', type: :feature do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
     select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
     check 'Start Now?'
     click_on 'Create Ndr'
+  end
+
+  scenario 'valid inputs' do
     visit edit_ndr_path(Ndr.find_by_is_active(true))
     fill_in 'How many members need to attend?', with: 3
     expect(page).to have_content(3)

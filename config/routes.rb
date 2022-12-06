@@ -10,6 +10,11 @@ Rails.application.routes.draw do
 
   get 'ndrs', to: 'ndrs#index'
 
+  # Manual Control of request button
+  get '/button_control', to: 'ndrs#button_control'
+  post '/disable_button', to: 'ndrs#disable_button'
+  post '/enable_button', to: 'ndrs#enable_button'
+
   get 'history', to: 'history#index'
   get '/member/rider_info', to: 'member#rider_info'
   get 'no_ride_assigned', to: 'member#no_ride_assigned'
@@ -75,6 +80,8 @@ Rails.application.routes.draw do
 
   resources :ndrs do
     post 'join', to: 'drivers#join', as: 'drivers_join'
+    post 'start'
+    post 'stop'
   end
 
   resources :drivers do

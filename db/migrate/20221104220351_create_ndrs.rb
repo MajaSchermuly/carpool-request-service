@@ -5,6 +5,7 @@ class CreateNdrs < ActiveRecord::Migration[6.1]
     create_table :ndrs, id: false do |t|
       t.primary_key :ndr_id
       t.boolean :is_active
+      t.boolean :button_override
       t.integer :member_id
       t.datetime :start_time
       t.datetime :end_time
