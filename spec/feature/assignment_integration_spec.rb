@@ -4,7 +4,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating an assignment', type: :feature do
-  scenario 'valid inputs' do
+  before(:each) do
     visit new_member_session_path
     fill_in 'Email', with: 'testuser@gmail.com'
     fill_in 'Password', with: 'Change*Password'
@@ -36,6 +36,12 @@ RSpec.describe 'Creating an assignment', type: :feature do
     fill_in 'Color', with: 'Red'
     fill_in 'Plate number', with: 'PZ65 BYV'
     click_on 'Create Car'
+    visit new_car_path
+    fill_in 'Make', with: 'Toyota'
+    fill_in 'Model', with: 'Prius'
+    fill_in 'Color', with: 'Blue'
+    fill_in 'Plate number', with: 'BG69 ARR'
+    click_on 'Create Car'
     visit requests_incoming_path
     fill_in 'Name:', with: 'Ricardo'
     fill_in 'Phone Number:', with: '2105270414'
@@ -43,6 +49,9 @@ RSpec.describe 'Creating an assignment', type: :feature do
     fill_in 'Drop Off Location:', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Number of Passengers:', with: 3
     click_on 'Create Request'
+  end
+
+  scenario 'valid inputs' do
     visit requests_waiting_path
     click_on 'Assign'
     select('Toyota Camry Red', from: 'assignment_car_id')
@@ -58,7 +67,7 @@ RSpec.describe 'Creating an assignment', type: :feature do
 end
 
 RSpec.describe 'Updating an assignment', type: :feature do
-  scenario 'update inputs' do
+  before(:each) do
     visit new_member_session_path
     fill_in 'Email', with: 'testuser@gmail.com'
     fill_in 'Password', with: 'Change*Password'
@@ -107,6 +116,9 @@ RSpec.describe 'Updating an assignment', type: :feature do
     click_on 'Assign'
     select('Toyota Camry Red', from: 'assignment_car_id')
     click_on 'Create Assignment'
+  end
+  
+  scenario 'update inputs' do
     visit edit_assignment_path(Assignment.find_by_request_id(Request.find_by_phone_number('2105270414')))
     select('Toyota Prius Blue', from: 'assignment_car_id')
     click_on 'Update Assignment'
