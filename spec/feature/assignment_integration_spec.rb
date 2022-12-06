@@ -5,10 +5,15 @@ require 'rails_helper'
 
 RSpec.describe 'Creating an assignment', type: :feature do
   scenario 'valid inputs' do
+    visit new_member_session_path
+    fill_in 'Email', with: 'testuser@gmail.com'
+    fill_in 'Password', with: 'Change*Password'
+    click_on 'LOGIN'
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     visit root_path
+    click_on 'Logout', match: :first
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
@@ -54,10 +59,15 @@ end
 
 RSpec.describe 'Updating an assignment', type: :feature do
   scenario 'update inputs' do
+    visit new_member_session_path
+    fill_in 'Email', with: 'testuser@gmail.com'
+    fill_in 'Password', with: 'Change*Password'
+    click_on 'LOGIN'
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     visit root_path
+    click_on 'Logout', match: :first
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
@@ -112,10 +122,15 @@ end
 
 RSpec.describe 'Marking an assignment as Done', type: :feature do
   scenario 'change status' do
+    visit new_member_session_path
+    fill_in 'Email', with: 'testuser@gmail.com'
+    fill_in 'Password', with: 'Change*Password'
+    click_on 'LOGIN'
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     visit root_path
+    click_on 'Logout', match: :first
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
@@ -163,10 +178,15 @@ end
 
 RSpec.describe 'Deleting an assignment', type: :feature do
   scenario 'delete inputs' do
+    visit new_member_session_path
+    fill_in 'Email', with: 'testuser@gmail.com'
+    fill_in 'Password', with: 'Change*Password'
+    click_on 'LOGIN'
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     visit root_path
+    click_on 'Logout', match: :first
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
