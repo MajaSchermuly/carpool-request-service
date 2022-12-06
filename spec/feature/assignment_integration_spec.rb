@@ -36,12 +36,6 @@ RSpec.describe 'Creating an assignment', type: :feature do
     fill_in 'Color', with: 'Red'
     fill_in 'Plate number', with: 'PZ65 BYV'
     click_on 'Create Car'
-    visit new_car_path
-    fill_in 'Make', with: 'Toyota'
-    fill_in 'Model', with: 'Prius'
-    fill_in 'Color', with: 'Blue'
-    fill_in 'Plate number', with: 'BG69 ARR'
-    click_on 'Create Car'
     visit requests_incoming_path
     fill_in 'Name:', with: 'Ricardo'
     fill_in 'Phone Number:', with: '2105270414'
