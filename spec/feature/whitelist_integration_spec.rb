@@ -50,7 +50,6 @@ RSpec.describe 'Editing a whitelist', type: :feature do
     visit edit_whitelist_path(Whitelist.find_by_email('reb_pendra@gmail.com'))
     fill_in 'Email', with: ''
     click_on 'Update Whitelist'
-    visit whitelists_path
     expect(page).to have_content('Email can\'t be blank')
   end
 end
