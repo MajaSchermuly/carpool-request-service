@@ -21,15 +21,27 @@ class Request < ApplicationRecord
   end
 
   def self.done
-    Request.where(request_status: 'Done').count
+    if @ndr = Ndr.find_by(is_active: true)
+      Request.where("created_at > ? and created_at < ?", @ndr.start_time, @ndr.end_time).where(request_status: 'Done').count
+    else
+	  '0'
+    end
   end
 
   def self.missed
-    Request.where(request_status: 'Missed').count
+    if @ndr = Ndr.find_by(is_active: true)
+      Request.where("created_at > ? and created_at < ?", @ndr.start_time, @ndr.end_time).where(request_status: 'Missed').count
+    else
+	  '0'
+    end
   end
 
   def self.cancelled
-    Request.where(request_status: 'Cancelled').count
+    if @ndr = Ndr.find_by(is_active: true)
+      Request.where("created_at > ? and created_at < ?", @ndr.start_time, @ndr.end_time).where(request_status: 'Cancelled').count
+    else
+	  '0'
+    end
   end
 
   def self.search(search_name, search_phone_number)

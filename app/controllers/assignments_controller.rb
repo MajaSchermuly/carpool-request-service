@@ -18,7 +18,9 @@ class AssignmentsController < ApplicationController
 
   # GET /assignments/done
   def done
-    @requests = Request.where(request_status: %w[Done Cancelled Missed]).order('updated_at DESC')
+	if @ndr = Ndr.find_by(is_active: true)
+      @requests = Request.where("created_at > ? and created_at < ?", @ndr.start_time, @ndr.end_time).where(request_status: %w[Done Cancelled Missed]).order('updated_at DESC')
+    end
   end
 
   # GET/assignments/queue
