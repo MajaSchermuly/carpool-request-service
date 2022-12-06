@@ -80,6 +80,8 @@ Rails.application.routes.draw do
 
   resources :ndrs do
     post 'join', to: 'drivers#join', as: 'drivers_join'
+    post 'start'
+    post 'stop'
   end
 
   resources :drivers do

@@ -4,11 +4,16 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating an assignment', type: :feature do
-  scenario 'valid inputs' do
+  before(:each) do
+    visit new_member_session_path
+    fill_in 'Email', with: 'testuser@gmail.com'
+    fill_in 'Password', with: 'Change*Password'
+    click_on 'LOGIN'
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     visit root_path
+    click_on 'Logout', match: :first
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
@@ -23,6 +28,7 @@ RSpec.describe 'Creating an assignment', type: :feature do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
     select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
     check 'Start Now?'
     click_on 'Create Ndr'
     visit new_car_path
@@ -38,6 +44,9 @@ RSpec.describe 'Creating an assignment', type: :feature do
     fill_in 'Drop Off Location:', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Number of Passengers:', with: 3
     click_on 'Create Request'
+  end
+
+  scenario 'valid inputs' do
     visit requests_waiting_path
     click_on 'Assign'
     select('Toyota Camry Red', from: 'assignment_car_id')
@@ -53,11 +62,16 @@ RSpec.describe 'Creating an assignment', type: :feature do
 end
 
 RSpec.describe 'Updating an assignment', type: :feature do
-  scenario 'update inputs' do
+  before(:each) do
+    visit new_member_session_path
+    fill_in 'Email', with: 'testuser@gmail.com'
+    fill_in 'Password', with: 'Change*Password'
+    click_on 'LOGIN'
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     visit root_path
+    click_on 'Logout', match: :first
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
@@ -72,6 +86,7 @@ RSpec.describe 'Updating an assignment', type: :feature do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
     select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
     check 'Start Now?'
     click_on 'Create Ndr'
     visit new_car_path
@@ -97,6 +112,9 @@ RSpec.describe 'Updating an assignment', type: :feature do
     click_on 'Assign'
     select('Toyota Camry Red', from: 'assignment_car_id')
     click_on 'Create Assignment'
+  end
+
+  scenario 'update inputs' do
     visit edit_assignment_path(Assignment.find_by_request_id(Request.find_by_phone_number('2105270414')))
     select('Toyota Prius Blue', from: 'assignment_car_id')
     click_on 'Update Assignment'
@@ -112,10 +130,15 @@ end
 
 RSpec.describe 'Marking an assignment as Done', type: :feature do
   scenario 'change status' do
+    visit new_member_session_path
+    fill_in 'Email', with: 'testuser@gmail.com'
+    fill_in 'Password', with: 'Change*Password'
+    click_on 'LOGIN'
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     visit root_path
+    click_on 'Logout', match: :first
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
@@ -130,6 +153,7 @@ RSpec.describe 'Marking an assignment as Done', type: :feature do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
     select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
     check 'Start Now?'
     click_on 'Create Ndr'
     visit new_car_path
@@ -163,10 +187,15 @@ end
 
 RSpec.describe 'Deleting an assignment', type: :feature do
   scenario 'delete inputs' do
+    visit new_member_session_path
+    fill_in 'Email', with: 'testuser@gmail.com'
+    fill_in 'Password', with: 'Change*Password'
+    click_on 'LOGIN'
     visit new_whitelist_path
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     click_on 'Create Whitelist'
     visit root_path
+    click_on 'Logout', match: :first
     click_on 'Sign Up'
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
@@ -181,6 +210,7 @@ RSpec.describe 'Deleting an assignment', type: :feature do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
     select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
     check 'Start Now?'
     click_on 'Create Ndr'
     visit new_car_path
