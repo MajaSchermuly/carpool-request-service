@@ -28,6 +28,7 @@ RSpec.describe 'Creating an assignment', type: :feature do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
     select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
     check 'Start Now?'
     click_on 'Create Ndr'
     visit new_car_path
@@ -85,6 +86,7 @@ RSpec.describe 'Updating an assignment', type: :feature do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
     select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
     check 'Start Now?'
     click_on 'Create Ndr'
     visit new_car_path
@@ -151,6 +153,7 @@ RSpec.describe 'Marking an assignment as Done', type: :feature do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
     select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
     check 'Start Now?'
     click_on 'Create Ndr'
     visit new_car_path
@@ -207,6 +210,7 @@ RSpec.describe 'Deleting an assignment', type: :feature do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
     select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
     check 'Start Now?'
     click_on 'Create Ndr'
     visit new_car_path

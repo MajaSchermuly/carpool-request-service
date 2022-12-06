@@ -31,6 +31,7 @@ RSpec.describe 'Creating an ndr', type: :feature do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
     select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
     check 'Start Now?'
     click_on 'Create Ndr'
     visit ndrs_path
@@ -63,6 +64,7 @@ RSpec.describe 'Editing an ndr', type: :feature do
     visit new_ndr_path
     select('12 AM', from: 'ndr_start_time_4i')
     select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
     check 'Start Now?'
     click_on 'Create Ndr'
   end

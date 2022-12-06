@@ -25,6 +25,12 @@ RSpec.describe 'Creating a request', type: :feature do
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
     click_on 'Sign up'
+    visit new_ndr_path
+    select('12 AM', from: 'ndr_start_time_4i')
+    select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
+    check 'Start Now?'
+    click_on 'Create Ndr'
   end
 
   scenario 'valid inputs' do
@@ -66,6 +72,12 @@ RSpec.describe 'Updating a request', type: :feature do
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
     click_on 'Sign up'
+    visit new_ndr_path
+    select('12 AM', from: 'ndr_start_time_4i')
+    select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
+    check 'Start Now?'
+    click_on 'Create Ndr'
     visit requests_incoming_path
     fill_in 'Name:', with: 'Ricardo'
     fill_in 'Phone Number:', with: '2105270414'
@@ -111,6 +123,12 @@ RSpec.describe 'Canceling a request', type: :feature do
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
     click_on 'Sign up'
+    visit new_ndr_path
+    select('12 AM', from: 'ndr_start_time_4i')
+    select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
+    check 'Start Now?'
+    click_on 'Create Ndr'
     visit requests_incoming_path
     fill_in 'Name:', with: 'Ricardo'
     fill_in 'Phone Number:', with: '2105270414'
@@ -157,6 +175,12 @@ RSpec.describe 'Deleting a request', type: :feature do
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
     click_on 'Sign up'
+    visit new_ndr_path
+    select('12 AM', from: 'ndr_start_time_4i')
+    select('11 PM', from: 'ndr_end_time_4i')
+    select('59', from: 'ndr_end_time_5i')
+    check 'Start Now?'
+    click_on 'Create Ndr'
     visit requests_incoming_path
     fill_in 'Name:', with: 'Ricardo'
     fill_in 'Phone Number:', with: '2105270414'
