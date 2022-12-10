@@ -25,25 +25,30 @@
 
     <tbody>
       <% @drivers&.each do |driver| %>
-        <% member = Member.find_by(member_id: driver.member_id) %>
-        <% car = Car.find_by(car_id: driver&.car_id) %>
-        <td><%= member&.first_name + " " + member&.last_name%></td>
-        <td><%= member&.phone %></td>
-        <% if !car.nil?%>
-          <td><%= "#" + car.car_id.to_s + " " + car.color + " " + car.make + " " + car.model%></td>
-        <% else %>
-          <td>Not Assigned</td>
-          <!--<td class="b-cell"><%= link_to 'Assign', {}, :class => "green table button" %></td>%>-->
-        <% end %>
-        <td><%= driver&.driver_status %></td>
-        <% if !driver.check_in_time.nil? %>
-          <td><%= (((DateTime.now.to_time - driver.check_in_time.to_time) % 3600) /60).to_i %> minutes </td>
-        <% else %>
-          <td> </td>
-        <% end %>
-        <% if current_member.is_supervisor %>
-          <td class="b-cell"><%= link_to 'Edit', edit_driver_path(driver), :class => "dark-grey table button" %>
-        <% end %>
+        <tr>
+          <% member = Member.find_by(member_id: driver.member_id) %>
+          <% car = Car.find_by(car_id: driver&.car_id) %>
+          <td><%= member&.first_name + " " + member&.last_name%></td>
+          <td><%= member&.phone %></td>
+
+          <% if !car.nil? %>
+            <td><%= "#" + car.car_id.to_s + " " + car.color + " " + car.make + " " + car.model%></td>
+          <% else %>
+            <td>Not Assigned</td>
+          <% end %>
+
+          <td><%= driver&.driver_status %></td>
+
+          <% if !driver.check_in_time.nil? %>
+            <td><%= (((DateTime.now.to_time - driver.check_in_time.to_time) % 3600) /60).to_i %> minutes </td>
+          <% else %>
+            <td>No Checkin</td>
+          <% end %>
+
+          <% if current_member.is_supervisor %>
+            <td class="b-cell"><%= link_to 'Edit', edit_driver_path(driver), :class => "dark-grey table button" %> </td>
+          <% end %>
+        </tr>
       <% end %>
     </tbody>
   </table>

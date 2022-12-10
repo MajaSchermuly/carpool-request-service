@@ -18,8 +18,12 @@ class CarsController < ApplicationController
       if @cars.nil?
         @cars = Car.all.where(car_id: driver.car_id)
       else
-        cars = @cars + Car.all.where(car_id: driver.car_id)
+        @cars = @cars + Car.all.where(car_id: driver.car_id)
       end
+    end
+
+    if !@cars.nil?
+      @cars = @cars.uniq
     end
   end
 

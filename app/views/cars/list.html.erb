@@ -31,7 +31,7 @@
           <td> <%= car&.model %> </td>
           <td> <%= car&.plate_number %> </td>
           <td> <%= car&.registration_expiry %> </td>
-          <td> <% @drivers&.each do |driver|%> 
+          <td> <% @drivers.where(car_id: car.car_id)&.each do |driver|%> 
                 <% member = Member.find_by(member_id: driver.member_id) %>
                 <%= member&.first_name + " " + member&.last_name %>
                <% end %> </td>
