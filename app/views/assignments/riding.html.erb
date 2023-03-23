@@ -22,7 +22,7 @@
         <th>Additional Info</th>
         <th>Time Waited</th>
         <th>Assigned By</th>
-        <th colspan="4">Actions</th>
+        <th colspan="5">Actions</th>
       </tr>
     </thead>
 
@@ -46,6 +46,7 @@
           <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "orange table button" %></td>
 		      <td class="b-cell"><%= link_to 'Edit Car', edit_assignment_path(assignment), :class => "blue table button" %></td>
           <td class="b-cell"><%= button_to 'Cancel', request_cancel_path(request), data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
+          <!--<td class="b-cell"><%= button_to 'Undo', %></td>-->
         </tr>
       <% end %>
     </tbody>
