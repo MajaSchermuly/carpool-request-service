@@ -16,6 +16,7 @@
           <th>ID</th>
           <th>Start Time</th>
           <th>End Time</th>
+          <th>Accept NG?</th>
           <th>Registered</th>
           <th>Status</th>
           <% if current_member.is_supervisor %>
@@ -34,6 +35,7 @@
             <td><%= ndr.ndr_id %></td>
             <td><%= ndr.start_time&.strftime("%D - %I:%M%p") %></td>
             <td><%= ndr.end_time&.strftime("%D - %I:%M%p") %></td>
+            <td><%= ndr.accept_ng_station ? "Yes" : "No" %></td>
             <td><%= ndr.num_members_signed_up.to_s + " / " + ndr.num_members_desired.to_s%> </td>
             
             <% if ndr.is_active %>
@@ -45,7 +47,11 @@
             <% end %>
 
             <% if current_member.is_supervisor %>
+              <% if (!ndr.is_active && DateTime.now < ndr.end_time) || ndr.is_active %>
               <td class="b-cell"><%= link_to 'Edit', edit_ndr_path(ndr), :class => "orange table button" %> </td>
+              <% else %>
+                <td>---</td>
+              <% end %>
               <td class="b-cell"> <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
               <%# Start the NDR, setting start_time to the current time %>
               <% if !ndr.is_active && DateTime.now < ndr.end_time %>

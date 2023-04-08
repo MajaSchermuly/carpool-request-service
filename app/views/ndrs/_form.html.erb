@@ -71,6 +71,13 @@
         <%= form.label :training_restrict, "Restrict Members without training?"  %>
         <%= form.check_box :training_restrict %>
       </div>
+
+      <% if ndr.persisted? %>
+        <div class="field horiz-container row wide spaced">
+          <%= form.label :accept_ng_station, "Accept NG Station?" %>
+          <%= form.check_box :accept_ng_station %>
+        </div>
+      <% end %>
     </div>
 
     <br><br>

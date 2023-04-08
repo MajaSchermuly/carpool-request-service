@@ -134,6 +134,12 @@ class RequestsController < ApplicationController
     end
   end
 
+  # PUT /requests/1/riding
+  def update_to_riding
+    @request = Request.find(params[:id])
+    @request.update(request_status: "Assigned Driver", time_cancelled: nil)
+  end
+
   # GET /requests/1/status
   def status; end
 
