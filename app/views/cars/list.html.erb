@@ -42,7 +42,7 @@
 </div>
 
 <% if (!@ndr.is_active && DateTime.now < @ndr.end_time) || @ndr.is_active %>
-  <%= link_to "Add Car", new_car_path, :class => "blue button small-margins" %>
+  <%= link_to "Add Car", new_car_path(ndr_id: params[:ndr_id]), :class => "blue button small-margins" %>
 <% end %>
 
 <div class="show-on-mobile-only">

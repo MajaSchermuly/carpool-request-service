@@ -20,7 +20,8 @@ class DriversController < ApplicationController
 
   # GET /driver/new
   def new
-    @driver = Driver.new
+    latest_ndr = Ndr.where(is_active: true).last  
+    @driver = Driver.new(ndr_id: latest_ndr.id)
   end
 
   # GET /driver/1/edit
@@ -28,7 +29,9 @@ class DriversController < ApplicationController
 
   # POST /driver or /driver.json
   def create
+    latest_ndr = Ndr.where(is_active: true).last  
     @driver = Driver.new(driver_params)
+    @driver.ndr_id = latest_ndr.id
 
     respond_to do |format|
       if @driver.save
@@ -138,7 +141,7 @@ class DriversController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def driver_params
-    params.require(:driver).permit(:member_id, :car_id, :check_in_time, :driver_status, :ndr_id)
+    params.require(:driver).permit(:member_id, :car_id, :check_in_time, :driver_status)
   end
 
   def driver_update_params
