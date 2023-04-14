@@ -40,9 +40,34 @@
     </div>
   </div>
 
+    <% if params[:ndr_id] %>
+    <div class="field view-table">
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Assign</th>
+        </thead>
+        <tbody>
+          <% @drivers.each do |driver| %>
+          <tr>
+            <td><%= driver.member.first_name +  ' ' + driver.member.last_name %></td>
+            <td><%= check_box_tag 'driver_ids[]', driver.id %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <% end %>
+
   <br><br>
 
   <div class="actions">
     <%= form.submit class: "green button" %>
   </div>
 <% end %>
+
+<style>
+  input[type=checkbox] {
+  margin-right: 0 !important;
+  };
+</style>

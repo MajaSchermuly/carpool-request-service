@@ -136,6 +136,6 @@ class NdrsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def ndr_params
-    params.require(:ndr).permit(:start_time, :end_time, :ndr_id, :is_active, :num_members_desired, :training_restrict, :dues_restrict)
+    params.require(:ndr).permit(:start_time, :end_time, :ndr_id, :is_active, :num_members_desired, :training_restrict, :dues_restrict, :accept_ng_station)
   end
 end

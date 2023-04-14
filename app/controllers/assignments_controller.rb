@@ -132,6 +132,13 @@ class AssignmentsController < ApplicationController
     end
   end
 
+  # PUT /assginment/:id/status/:status
+  def update_assignment_status
+    request = Request.find(params[:id])
+    request.update(status: params[:status])
+    render json: request
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

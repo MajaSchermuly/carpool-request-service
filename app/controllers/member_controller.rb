@@ -13,8 +13,14 @@ class MemberController < ApplicationController
   def no_ride_assigned; end
 
   def rider_info
-    @assigned_rides = Assignment.where(member_id: current_member.member_id, drop_off_time: nil)
+    @assigned_rides = []
 
+    cars_with_driver = Driver.where(member_id: current_member.id)
+    cars_with_driver.each do |drive|
+      @assigned_rides += Assignment.where(car_id: drive.car_id)
+    end
+
+    # @assigned_rides = Assignment.where(car_id: current_member.member_id, drop_off_time: nil)
     redirect_to no_ride_assigned_path if @assigned_rides.empty?
 
     @assigned_rides.each do |ride|
