@@ -24,7 +24,7 @@
           <th>Assigned By</th>
           <th>Time Rode</th>
           <th>Home At</th>
-          <th colspan="2">Actions</th>
+          <th colspan="3">Actions</th>
         </tr>
       </thead>
 
@@ -47,6 +47,7 @@
               <td><%= time_home(assignment) %></td>
               <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "orange table button" %></td>
               <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "blue table button" %></td>
+              <td class='b-cell'><%= button_to 'Undo', request_update_riding_path(request), :class => "purple table button" %></td>
             </tr>
           <% else %>
              <tr>
@@ -62,6 +63,7 @@
               <td></td>
               <td class="b-cell"><%= link_to 'Edit Request', edit_request_path(request), :class => "orange table button" %></td>
               <td class="b-cell"><%= link_to 'Edit Car', edit_request_path(request), :class => "blue table button" %></td>
+              <td class='b-cell'><%= button_to 'Undo', request_update_riding_path(request), :class => "purple table button" %></td>
             </tr>
           <% end %>
         <% end %>

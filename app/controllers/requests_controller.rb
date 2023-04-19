@@ -4,7 +4,7 @@ require 'date'
 
 class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
-  before_action :set_request_id, only: %i[status done cancel]
+  before_action :set_request_id, only: %i[status done cancel update_waiting update_riding]
   before_action :insure_active_ndr, only: %i[new]
 
   # GET /requests or /requests.json
@@ -199,6 +199,49 @@ class RequestsController < ApplicationController
     end
   end
 
+  # POST /requests/1/update_waiting
+  def update_waiting
+    @request.update_attribute(:queue_pos, 0)
+    @request.update_attribute(:request_status, 'Unassigned')
+    @request.update_attribute(:time_cancelled, nil)
+
+    assign = Assignment.where(request_id: @request.id)
+    assign.each do |a|
+      a.destroy
+    end
+
+    respond_to do |format|
+      if current_member
+        format.html { redirect_back fallback_location: requests_waiting_url, notice: 'Request state was successfully set to unassigned.' }
+        format.json { head :no_content }
+      end
+
+      format.html { redirect_to search_query_path, notice: 'Request was successfully set to unassigned.' }
+      format.json { head :no_content }
+    end
+  end
+
+  # POST /requests/1/update_riding
+  def update_riding
+    @request.update_attribute(:request_status, 'Assigned Driver')
+    @request.update_attribute(:time_cancelled, nil)
+
+    assign = Assignment.where(request_id: @request.id)
+    assign.each do |a|
+      a.update_attribute(:drop_off_time, nil)
+    end
+
+    respond_to do |format|
+      if current_member
+        format.html { redirect_back fallback_location: requests_waiting_url, notice: 'Request state was successfully set to unassigned.' }
+        format.json { head :no_content }
+      end
+
+      format.html { redirect_to search_query_path, notice: 'Request was successfully set to unassigned.' }
+      format.json { head :no_content }
+    end
+  end
+
   # DELETE /requests/1 or /requests/1.json
   def destroy
     # update the queue position of all requests later in the queue
@@ -246,7 +289,7 @@ class RequestsController < ApplicationController
 
   def time_rode(assignment)
     # making sure drop off time was specified
-    if assignment.drop_off_time
+    if assignment&.drop_off_time
       "#{((assignment.drop_off_time.to_datetime - assignment.created_at.to_datetime) * 24 * 60).to_i}m"
     # otherwise default to ''
     else
