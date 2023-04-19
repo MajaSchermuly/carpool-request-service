@@ -50,6 +50,7 @@ class DriversController < ApplicationController
   def update
     respond_to do |format|
       if @driver.update(driver_params)
+        @driver.update_attribute(:car_id, Car.where(display_id: @driver.car_id).last.id)
         format.html { redirect_to driver_url(@driver), notice: 'Driver was successfully updated.' }
         format.json { render :show, status: :ok, location: @driver }
       else
