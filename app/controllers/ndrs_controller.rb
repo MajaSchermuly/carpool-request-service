@@ -71,6 +71,29 @@ class NdrsController < ApplicationController
     @curr_ndr.update_attribute(:is_active, false)
     @curr_ndr.update_attribute(:end_time, DateTime.now)
 
+    drive = Driver.where(ndr_id: params[:ndr_id])
+    assign = []
+
+    drive.each do |d|
+      assign += Assignment.where(member_id: d.member_id, car_id: d.car_id)
+    end
+
+    requests = []
+
+    assign.each do |a|
+      a.update_attribute(:drop_off_time, DateTime.now)
+      requests.push(a.request)
+    end
+
+    requests.each do |r|
+      r.update_attribute(:request_status, "Done")
+    end
+
+    unassigned = Request.where(request_status: "Unassigned")
+    unassigned.each do |u|
+      u.update_attribute(:request_status, "Done")
+    end
+
     respond_to do |format|
       format.html { redirect_to ndrs_url, notice: 'Ndr was successfully stopped.' }
       format.json { head :no_content }

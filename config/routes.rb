@@ -66,6 +66,8 @@ Rails.application.routes.draw do
     get 'status'
     post 'done'
     post 'cancel'
+    post 'update_waiting'
+    post 'update_riding'
 
     get 'assign', to: 'assignments#assign', as: 'assign'
     post 'assign', to: 'assignments#create', as: 'create_assignment'

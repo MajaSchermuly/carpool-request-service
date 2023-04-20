@@ -21,8 +21,8 @@
             <div class="admin-options">
               <% if current_member %>
                 <%= link_to "NDR", ndrs_path %>
-              <% end %>
                 <%= link_to "Phone Room", requests_incoming_path %>
+              <% end %>
               <% if current_member and current_member.is_admin%>
                 <%= link_to "Admin", whitelists_path %>
                 <%= link_to "Member Overview", member_overview_path%>

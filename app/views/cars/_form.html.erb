@@ -12,6 +12,11 @@
       </ul>
     </div>
   <% end %>
+    
+  <div class="field">
+    <%= form.label :display_id, "Display Id"%>
+    <%= form.number_field :display_id %>
+  </div>
 
   <div class="field">
     <%= form.label :make %>
@@ -57,6 +62,8 @@
         </tbody>
       </table>
     </div>
+      
+      <%= form.hidden_field :ndr_id, value: params[:ndr_id] %>
     <% end %>
 
   <br><br>
@@ -69,5 +76,9 @@
 <style>
   input[type=checkbox] {
   margin-right: 0 !important;
-  };
+  }
+  
+  .field {
+  width: 100%;
+  }
 </style>

@@ -45,8 +45,10 @@
             <td>No Checkin</td>
           <% end %>
 
-          <% if current_member.is_supervisor %>
+          <% if current_member.is_supervisor && @ndr&.is_active %>
             <td class="b-cell"><%= link_to 'Edit', edit_driver_path(driver), :class => "dark-grey table button" %> </td>
+          <% else %>
+            <td>---</td>
           <% end %>
         </tr>
       <% end %>
