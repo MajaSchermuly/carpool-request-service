@@ -119,6 +119,16 @@ class DriversController < ApplicationController
     @ndr = Ndr.find_by(ndr_id: @driver.ndr_id)
     @ndr.update_attribute(:num_members_signed_up, @ndr.num_members_signed_up - 1)
 
+    assign = Assignment.where(member_id: current_member.member_id).last
+    if assign
+      req = Request.where(request_id: assign.request_id).first
+      if req
+        req.update_attribute(:request_status, "Unassigned")
+      end
+
+      assign.destroy
+    end
+
     respond_to do |format|
       if current_member
         format.html { redirect_back fallback_location: ndrs_path, notice: 'Driver was successfully Deleted.' }

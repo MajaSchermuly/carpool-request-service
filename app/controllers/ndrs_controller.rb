@@ -94,6 +94,11 @@ class NdrsController < ApplicationController
       u.update_attribute(:request_status, "Done")
     end
 
+    unassigned = Request.where(request_status: "Assigned Driver")
+    unassigned.each do |u|
+      u.update_attribute(:request_status, "Done")
+    end
+
     respond_to do |format|
       format.html { redirect_to ndrs_url, notice: 'Ndr was successfully stopped.' }
       format.json { head :no_content }

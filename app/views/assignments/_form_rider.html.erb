@@ -21,12 +21,12 @@
     <div class="vert-container">
       <div class="field">
         <%= label_tag "Enter your name:" %>
-        <%= text_field_tag(:search_name, params[:search_name]) %>
+        <%= text_field_tag(:search_name, params[:search_name], maxlength: 300) %>
       </div>
         
       <div class="field">
         <%= label_tag "Enter your phone number:" %>
-        <%= text_field_tag(:search_phone_number, params[:search_phone_number]) %>
+        <%= text_field_tag(:search_phone_number, params[:search_phone_number], maxlength: 300) %>
       </div>
     </div>
 
