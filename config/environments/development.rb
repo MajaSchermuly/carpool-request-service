@@ -16,6 +16,9 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  ENV['google_oauth_client_id'] = '60186118074-5n3on76lbiqhmhqqmqp09eev7g563v22.apps.googleusercontent.com'
+  ENV['googlr_oauth_client_secret'] = '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'
+
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
@@ -78,16 +81,21 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
+  config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: 'carpool-main-branch.herokuapp.com' }
+
+  # Ignore bad email addresses and do not raise email delivery errors.
+  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
     enable_starttls_auto: true,
-    address: 'smtp.gmail.com',
-    port: '587',
-    domain: 'gmail.com',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    domain: 'carpool-main-branch.herokuapp.com',
     authentication: 'plain',
-    username: ENV['GMAIL_USERNAME'],
-    password: ENV['GMAIL_PASSWORD']
+    user_name: 'apikey',
+    password: ENV['SENDGRID_API_KEY']
   }
 end

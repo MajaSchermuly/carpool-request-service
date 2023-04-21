@@ -13,22 +13,22 @@
 
   <div class="field">
     <%= form.label :name, 'Name:' %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, maxlength: 300 %>
   </div>
   
   <div class="field">
     <%= form.label :phone_number, 'Phone Number:' %>
-    <%= form.text_field :phone_number %>
+    <%= form.text_field :phone_number, maxlength: 300 %>
   </div>
 
   <div class="field">
     <%= form.label :pick_up_loc, 'Pick Up Location:' %>
-    <%= form.text_field :pick_up_loc %>
+    <%= form.text_field :pick_up_loc, maxlength: 300 %>
   </div>
   
   <div class="field">
     <%= form.label :drop_off_loc, 'Drop Off Location:' %>
-    <%= form.text_field :drop_off_loc %>
+    <%= form.text_field :drop_off_loc, maxlength: 300 %>
   </div>
 
   <div class="field">
@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :additional_info, 'Additional Info:' %>
-    <%= form.text_field :additional_info %>
+    <%= form.text_field :additional_info, maxlength: 500 %>
   </div>
 
   <br>
