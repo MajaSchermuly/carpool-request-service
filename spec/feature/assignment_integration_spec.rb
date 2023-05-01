@@ -18,9 +18,9 @@ RSpec.describe 'Creating an assignment', type: :feature do
     fill_in 'First name', with: 'Rebecca'
     fill_in 'Last name', with: 'Pendragon'
     fill_in 'Email', with: 'reb_pendra@gmail.com'
-    fill_in 'Phone', with: '7109290011'
+    fill_in 'Phone', with: '710-929-0011'
     fill_in 'Emergency 1 full name', with: 'Lucy Pendragon'
-    fill_in 'Emergency 1 phone number', with: '7109295223'
+    fill_in 'Emergency 1 phone number', with: '710-929-5223'
     fill_in 'Address', with: '<address>'
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
@@ -39,7 +39,7 @@ RSpec.describe 'Creating an assignment', type: :feature do
     click_on 'Create Car'
     visit requests_incoming_path
     fill_in 'Name:', with: 'Ricardo'
-    fill_in 'Phone Number:', with: '2105270414'
+    fill_in 'Phone Number:', with: '21-052-70414'
     fill_in 'Pick Up Location:', with: '125 Spence Str, College Station, TX 77840'
     fill_in 'Drop Off Location:', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Number of Passengers:', with: 3
@@ -78,7 +78,7 @@ RSpec.describe 'Updating an assignment', type: :feature do
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     fill_in 'Phone', with: '7109290011'
     fill_in 'Emergency 1 full name', with: 'Lucy Pendragon'
-    fill_in 'Emergency 1 phone number', with: '7109295223'
+    fill_in 'Emergency 1 phone number', with: '710-929-5223'
     fill_in 'Address', with: '<address>'
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
@@ -103,7 +103,7 @@ RSpec.describe 'Updating an assignment', type: :feature do
     click_on 'Create Car'
     visit requests_incoming_path
     fill_in 'Name:', with: 'Ricardo'
-    fill_in 'Phone Number:', with: '2105270414'
+    fill_in 'Phone Number:', with: '210-527-0414'
     fill_in 'Pick Up Location:', with: '125 Spence Str, College Station, TX 77840'
     fill_in 'Drop Off Location:', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Number of Passengers:', with: 3
@@ -145,7 +145,7 @@ RSpec.describe 'Marking an assignment as Done', type: :feature do
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     fill_in 'Phone', with: '7109290011'
     fill_in 'Emergency 1 full name', with: 'Lucy Pendragon'
-    fill_in 'Emergency 1 phone number', with: '7109295223'
+    fill_in 'Emergency 1 phone number', with: '710-929-5223'
     fill_in 'Address', with: '<address>'
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
@@ -164,7 +164,7 @@ RSpec.describe 'Marking an assignment as Done', type: :feature do
     click_on 'Create Car'
     visit requests_incoming_path
     fill_in 'Name:', with: 'Ricardo'
-    fill_in 'Phone Number:', with: '2105270414'
+    fill_in 'Phone Number:', with: '210-527-0414'
     fill_in 'Pick Up Location:', with: '125 Spence Str, College Station, TX 77840'
     fill_in 'Drop Off Location:', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Number of Passengers:', with: 3
@@ -202,7 +202,7 @@ RSpec.describe 'Deleting an assignment', type: :feature do
     fill_in 'Email', with: 'reb_pendra@gmail.com'
     fill_in 'Phone', with: '7109290011'
     fill_in 'Emergency 1 full name', with: 'Lucy Pendragon'
-    fill_in 'Emergency 1 phone number', with: '7109295223'
+    fill_in 'Emergency 1 phone number', with: '710-929-5223'
     fill_in 'Address', with: '<address>'
     fill_in 'Password', with: 'neone99'
     fill_in 'Password confirmation', with: 'neone99'
@@ -221,7 +221,7 @@ RSpec.describe 'Deleting an assignment', type: :feature do
     click_on 'Create Car'
     visit requests_incoming_path
     fill_in 'Name:', with: 'Ricardo'
-    fill_in 'Phone Number:', with: '2105270414'
+    fill_in 'Phone Number:', with: '210-527-0414'
     fill_in 'Pick Up Location:', with: '125 Spence Str, College Station, TX 77840'
     fill_in 'Drop Off Location:', with: '719 S Rosemary Dr, Bryan, TX 77802'
     fill_in 'Number of Passengers:', with: 3
