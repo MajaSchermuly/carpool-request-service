@@ -18,9 +18,9 @@ RSpec.describe 'Signing up with Form', type: :system do
   #    fill_in 'member_last_name', with: 'Phol'
   #    fill_in 'member_email', with: 'email'
   #    fill_in 'member_address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
-  #    fill_in 'member_phone', with: '3343987387'
+  #    fill_in 'member_phone', with: '334-398-7387'
   #    fill_in 'member_emergency_1_full_name', with: 'John Phol'
-  #    fill_in 'member_emergency_1_phone_number', with: '5656354563'
+  #    fill_in 'member_emergency_1_phone_number', with: '565-635-4563'
   #    fill_in 'member_password', with: password
   #    fill_in 'member_password_confirmation', with: password
   #    click_on 'Sign up'
@@ -35,9 +35,9 @@ RSpec.describe 'Signing up with Form', type: :system do
     fill_in 'member_last_name', with: 'Phol'
     fill_in 'member_email', with: 'giphane67764@imudutex.com'
     fill_in 'member_address', with: '2769 Eastern Blvd Montgomery, Alaska 36117'
-    fill_in 'member_phone', with: '3343987387'
+    fill_in 'member_phone', with: '334-398-7387'
     fill_in 'member_emergency_1_full_name', with: 'John Phol'
-    fill_in 'member_emergency_1_phone_number', with: '3343962503'
+    fill_in 'member_emergency_1_phone_number', with: '334-396-2503'
     fill_in 'member_password', with: '123456'
     fill_in 'member_password_confirmation', with: '12345'
     click_on 'Sign up'

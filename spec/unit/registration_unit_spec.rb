@@ -6,7 +6,7 @@ require 'rails_helper'
 RSpec.describe Member, type: :model do
   subject do
     Whitelist.create(email: 'adjdhflkajhsd@gjalsdm.com')
-    Member.create!(first_name: 'TestName', last_name: 'TestName', phone: '8324616853', address: '987239yr8', emergency_1_phone_number: '8578575843', emergency_1_full_name: 'TestName', email: 'adjdhflkajhsd@gjalsdm.com', password: '123456', password_confirmation: '123456')
+    Member.create!(first_name: 'TestName', last_name: 'TestName', phone: '832-461-6853', address: '987239yr8', emergency_1_phone_number: '8578575843', emergency_1_full_name: 'TestName', email: 'adjdhflkajhsd@gjalsdm.com', password: '123456', password_confirmation: '123456')
   end
 
   it 'is valid with valid attributes' do
