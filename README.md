@@ -28,6 +28,7 @@ Once in your docker container, clone the repository and do
 
 ```
 bundle install
+rails webpacker:install
 rails db:create
 rails db:migrate
 ```
@@ -61,3 +62,4 @@ Admins needing support can view the support document. Users who need help or hav
 * Terry Ruhge
 * Miguel Urbina
 * John Nichols
+* Mitri Bassel Toubbeh
