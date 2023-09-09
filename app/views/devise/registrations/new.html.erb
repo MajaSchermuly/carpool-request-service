@@ -1,28 +1,7 @@
 <div>
   <h1 class="title">Sign up</h1>
 
-  <br><br>
-
-  <%- if devise_mapping.omniauthable? %>
-    <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= form_for "Login",
-        url: omniauth_authorize_path(resource_name, provider),
-        method: :post,
-        data: {turbo: "false"} do |f| %>
-          <div class="google button">
-            <div class="g-oath-button-logo"></div>
-            <%= f.submit "Sign in with Google", :class => "g-oath-button-text" %>
-          </div>
-      <% end %>
-    <% end %>
-  <% end %>
   <br>
-
-  <div class="horiz-container2">
-    <span class="inline-hr"></span>
-    <h2 class="centered green-text">OR</h2>
-    <span class="inline-hr"></span>
-  </div>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -99,7 +78,7 @@
 
     <br>
 
-    <%= link_to "Back", :back, :class => "grey button" %>
+    <a onclick="history.back()" class="grey button">Back</a>
   <% end %>
 
 </div>

@@ -99,6 +99,11 @@ class NdrsController < ApplicationController
       u.update_attribute(:request_status, "Done")
     end
 
+    all_requests = Request.all
+    all_requests.each do |r|
+      r.update_attribute(:phone_number, nil)
+    end
+
     respond_to do |format|
       format.html { redirect_to ndrs_url, notice: 'Ndr was successfully stopped.' }
       format.json { head :no_content }
