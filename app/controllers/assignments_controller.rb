@@ -24,9 +24,9 @@ class AssignmentsController < ApplicationController
 
   # GET/assignments/queue
   def queue
-    @requests_waiting = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: 'Unassigned').order('created_at ASC')
-    @requests_riding = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: 'Assigned Driver').order('created_at ASC')
-    @requests_done = Request.search(params[:search_name], params[:search_phone_number]).where(request_status: %w[Done Cancelled Missed]).order('updated_at DESC')
+    @requests_waiting = Request.match_lower(params[:search_name]).where(request_status: 'Unassigned', phone_number: params[:search_phone_number]).where('updated_at > ?', 15.hours.ago).order('created_at ASC')
+    @requests_riding = Request.match_lower(params[:search_name]).where(request_status: 'Assigned Driver', phone_number: params[:search_phone_number]).where('updated_at > ?', 15.hours.ago).order('created_at ASC')
+    @requests_done = Request.match_lower(params[:search_name]).where(request_status: %w[Done Cancelled Missed], phone_number: params[:search_phone_number]).where('updated_at > ?', 15.hours.ago).order('updated_at DESC')
 
     # Check spot in line
     # logger.debug "\nRequests Waiting: #{@requests_waiting.inspect}"
@@ -130,6 +130,13 @@ class AssignmentsController < ApplicationController
       format.html { redirect_to assignments_url, notice: 'Assignment was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # PUT /assginment/:id/status/:status
+  def update_assignment_status
+    request = Request.find(params[:id])
+    request.update(status: params[:status])
+    render json: request
   end
 
   private

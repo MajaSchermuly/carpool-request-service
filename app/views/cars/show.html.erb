@@ -3,6 +3,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Id:</strong>
+  <%= @car.display_id %>
+</p>
+
+<p>
   <strong>Make:</strong>
   <%= @car.make %>
 </p>
@@ -29,4 +34,4 @@
 
 <br><br>
 
-<%= link_to 'Back', cars_path, class: "grey button" %>
+<a onclick="history.back()" class="grey button">Back</a>

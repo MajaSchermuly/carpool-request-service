@@ -31,10 +31,7 @@
     <%= form.text_field :driver_status %>
   </div>
 
-  <div class="field">
-    <%= form.label :ndr_id, 'NDR ID:' %>
-    <%= form.text_field :ndr_id %>
-  </div>
+  <%= form.hidden_field :ndr_id, value: params[:ndr_id] %>
 
   <br>
 

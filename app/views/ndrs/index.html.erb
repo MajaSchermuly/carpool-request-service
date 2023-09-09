@@ -6,7 +6,6 @@
   <% if current_member.is_supervisor %>
     <%= link_to 'Create NDR', new_ndr_path, :class => "green button small-margins" %>
   <% end %>
-  <%= link_to 'View/Edit Cars', cars_path, :class => "blue button small-margins" %>
 </div>
 
 <div class="hide-on-mobile-only">
@@ -17,6 +16,7 @@
           <th>ID</th>
           <th>Start Time</th>
           <th>End Time</th>
+          <th>Accept NG?</th>
           <th>Registered</th>
           <th>Status</th>
           <% if current_member.is_supervisor %>
@@ -35,7 +35,9 @@
             <td><%= ndr.ndr_id %></td>
             <td><%= ndr.start_time&.strftime("%D - %I:%M%p") %></td>
             <td><%= ndr.end_time&.strftime("%D - %I:%M%p") %></td>
-            <td><%= ndr.num_members_signed_up.to_s + " / " + ndr.num_members_desired.to_s%> </td>
+            <td><%= ndr.accept_ng_station ? "Yes" : "No" %></td>
+            <td><%= Driver.where(ndr_id: ndr.ndr_id).count.to_s + " / " + ndr.num_members_desired.to_s%>
+            </td>
             
             <% if ndr.is_active %>
               <td>Active</td>
@@ -46,7 +48,11 @@
             <% end %>
 
             <% if current_member.is_supervisor %>
+              <% if (!ndr.is_active && DateTime.now < ndr.end_time) || ndr.is_active %>
               <td class="b-cell"><%= link_to 'Edit', edit_ndr_path(ndr), :class => "orange table button" %> </td>
+              <% else %>
+                <td>---</td>
+              <% end %>
               <td class="b-cell"> <%= button_to 'Delete', ndr, method: :delete, data: { confirm: 'Are you sure?' }, :class => "dark-red table button" %></td>
               <%# Start the NDR, setting start_time to the current time %>
               <% if !ndr.is_active && DateTime.now < ndr.end_time %>
@@ -67,10 +73,12 @@
               <% else %>
                 <td>----</td>
               <% end %>
-            <% else %>
+            <% elsif ndr.is_active %>
               <% driver = Driver.find_by(ndr_id: ndr.ndr_id, member_id: current_member.member_id) %>
               <td class="b-cell"><%= button_to 'Leave', driver_leave_path(driver), data: { confirm: 'Are you sure?' }, :class => "blue table button fill" %> </td>
-            <% end %>
+            <% else %>
+             <td>----</td>
+              <% end %>
 
             <% if current_member.is_supervisor %>
               <td class="b-cell"><%= link_to 'Show', cars_list_path(:ndr_id => ndr.ndr_id), :class => "purple table button" %> </td>
@@ -90,3 +98,9 @@
     </p>
   </div>
 </div>
+
+  <style>
+    td > a {
+    display: inline-table !important;
+    }
+  </style>

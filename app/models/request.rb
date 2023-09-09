@@ -10,7 +10,7 @@ class Request < ApplicationRecord
   # NXX goes from 200-999
   # XXXX goes from 0000-9999
   # regex pulled from https://rubygems.org/gems/phone_number_validator documentation
-  validates :phone_number, phone_number: { format: /^(?:(?:[2-9]11)|(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:\x20+|#|x\.?|ext\.?|extension)\s*(\d+))?)$/i }
+  validates :phone_number, format: { with: /\A\d{3}-\d{3}-\d{4}\z/i, message: 'must be in the format ###-###-####' }
 
   def self.waiting
     Request.where(request_status: 'Unassigned').count
@@ -49,5 +49,9 @@ class Request < ApplicationRecord
 
   def self.search(search_name, search_phone_number)
     Request.where(name: search_name, phone_number: search_phone_number)
+  end
+
+  def self.match_lower(search_name)
+    where('name ILIKE ?', search_name.to_s)
   end
 end

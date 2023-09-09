@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_221_104_220_351) do
+ActiveRecord::Schema.define(version: 20_230_909_013_852) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20_221_104_220_351) do
     t.date 'registration_expiry'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.integer 'display_id'
+    t.integer 'ndr_id'
   end
 
   create_table 'drivers', primary_key: 'driver_id', force: :cascade do |t|
@@ -101,6 +103,7 @@ ActiveRecord::Schema.define(version: 20_221_104_220_351) do
     t.boolean 'training_restrict', default: true
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
+    t.boolean 'accept_ng_station', default: false
   end
 
   create_table 'requests', primary_key: 'request_id', force: :cascade do |t|

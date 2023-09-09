@@ -20,7 +20,8 @@ class DriversController < ApplicationController
 
   # GET /driver/new
   def new
-    @driver = Driver.new
+    latest_ndr = Ndr.where(is_active: true).last
+    @driver = Driver.new(ndr_id: latest_ndr&.id || params[:ndr_id])
   end
 
   # GET /driver/1/edit
@@ -28,7 +29,11 @@ class DriversController < ApplicationController
 
   # POST /driver or /driver.json
   def create
+    latest_ndr = Ndr.where(is_active: true).first&.id || params[:ndr_id]
     @driver = Driver.new(driver_params)
+
+    @driver.car_id = Car.where(display_id: @driver.car_id).last.id # Assign based on the car's display id
+    @driver.ndr_id = latest_ndr
 
     respond_to do |format|
       if @driver.save
@@ -45,6 +50,7 @@ class DriversController < ApplicationController
   def update
     respond_to do |format|
       if @driver.update(driver_params)
+        @driver.update_attribute(:car_id, Car.where(display_id: @driver.car_id).last.id)
         format.html { redirect_to driver_url(@driver), notice: 'Driver was successfully updated.' }
         format.json { render :show, status: :ok, location: @driver }
       else
@@ -67,7 +73,11 @@ class DriversController < ApplicationController
   # POST /driver/checkin_update
   def checkin_update
     @driver = Driver.find_by(member_id: current_member.member_id, ndr_id: Ndr.find_by(is_active: true))
-    @driver.update(driver_update_params)
+    if params[:driver_status] != 'Other'
+      @driver.update_attribute(:driver_status, params[:driver_status])
+    else
+      @driver.update_attribute(:driver_status, params[:driver_status_other])
+    end
     # @driver.update_attribute(:driver_status, :driver_status)
     @driver.update_attribute(:check_in_time, DateTime.now)
     p @driver
@@ -84,7 +94,7 @@ class DriversController < ApplicationController
   # POST /driver/join
   def join_confirm
     @driver = Driver.new(driver_params)
-    @ndr = Ndr.find(params[:ndr_id])
+    @ndr = Ndr.where(ndr_id: params[:ndr_id])
     @member = Member.find_by(member_id: current_member.member_id)
 
     respond_to do |format|
@@ -108,6 +118,14 @@ class DriversController < ApplicationController
     @driver.destroy
     @ndr = Ndr.find_by(ndr_id: @driver.ndr_id)
     @ndr.update_attribute(:num_members_signed_up, @ndr.num_members_signed_up - 1)
+
+    assign = Assignment.where(member_id: current_member.member_id).last
+    if assign
+      req = Request.where(request_id: assign.request_id).first
+      req&.update_attribute(:request_status, 'Unassigned')
+
+      assign.destroy
+    end
 
     respond_to do |format|
       if current_member
@@ -138,7 +156,7 @@ class DriversController < ApplicationController
   end
 
   def driver_update_params
-    params.permit(:driver_status)
+    params.permit(:driver_status, :driver_status_other)
   end
 
   # Makes sure an NDR is active and the current member is signed up as a driver

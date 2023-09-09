@@ -11,16 +11,19 @@ class CarsController < ApplicationController
   # GET /cars/
   def list
     ndr_id = params[:ndr_id]
+    @cars = Car.all.where(ndr_id: params[:ndr_id])
     @ndr = Ndr.find_by(ndr_id: ndr_id)
     @drivers = Driver.all.where(ndr_id: ndr_id)
     p @drivers
     @drivers.each do |driver|
-      if @cars.nil?
-        @cars = Car.all.where(car_id: driver.car_id)
-      else
-        cars = @cars + Car.all.where(car_id: driver.car_id)
-      end
+      @cars = if @cars.nil?
+                Car.all.where(car_id: driver.car_id)
+              else
+                @cars + Car.all.where(car_id: driver.car_id)
+              end
     end
+
+    @cars = @cars.uniq unless @cars.nil?
   end
 
   # GET /cars/1 or /cars/1.json
@@ -29,6 +32,7 @@ class CarsController < ApplicationController
   # GET /cars/new
   def new
     @car = Car.new
+    @drivers = Driver.where(ndr_id: params[:ndr_id])
   end
 
   # GET /cars/1/edit
@@ -38,8 +42,20 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
 
+    if params[:driver_ids] && (params[:driver_ids].count > 2)
+      format.html { redirect_to :new, notice: 'Can only assign up to two drivers' }
+      format.json { head :no_content }
+    end
+
     respond_to do |format|
       if @car.save
+        driver_ids = params[:driver_ids] # get the selected driver ids from the form submission
+        driver_ids&.each do |driver_id|
+          driver = Driver.find(driver_id)
+          driver.car_id = @car.id # set the car foreign key on the driver object
+          driver.save
+        end
+
         format.html { redirect_to car_url(@car), notice: 'Car was successfully created.' }
         format.json { render :show, status: :created, location: @car }
       else
@@ -81,6 +97,6 @@ class CarsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def car_params
-    params.require(:car).permit(:make, :model, :color, :plate_number, :registration_expiry, :ndr)
+    params.require(:car).permit(:make, :model, :color, :plate_number, :registration_expiry, :ndr, :display_id, :ndr_id)
   end
 end

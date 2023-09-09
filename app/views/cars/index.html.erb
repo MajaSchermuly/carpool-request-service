@@ -22,7 +22,7 @@
     <tbody>
       <% @cars.each do |car| %>
         <tr>
-          <td><%= car.car_id %>
+          <td><%= car.display_id %>
           <td><%= car.color %></td>
           <td><%= car.make %></td>
           <td><%= car.model %></td>
@@ -42,4 +42,4 @@
 
 <br>
 
-<%= link_to 'Back', ndrs_path, class: "grey button" %>
+<a onclick="history.back()" class="grey button">Back</a>
