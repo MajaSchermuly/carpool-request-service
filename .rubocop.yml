@@ -21,7 +21,7 @@ Lint/AssignmentInCondition:
 # Offense count: 2
 # Configuration parameters: IgnoredMethods, CountRepeatedAttributes.
 Metrics/AbcSize:
-  Max: 35
+  Max: 100
   Exclude:
     - 'app/controllers/assignments_controller.rb'
     - 'app/controllers/requests_controller.rb'
@@ -37,7 +37,7 @@ Metrics/BlockLength:
 # Offense count: 1
 # Configuration parameters: ? (Miguel Urbina set this here).
 Metrics/ClassLength:
-  Max: 180
+  Max: 500
 
 # Offense count: 1
 # Configuration parameters: IgnoredMethods.

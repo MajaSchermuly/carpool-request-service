@@ -1,9 +1,10 @@
+# frozen_string_literal: true
 ## frozen_string_literal: true
 #
 ## location: spec/feature/ndr_integration_spec.rb
-#require 'rails_helper'
+# require 'rails_helper'
 #
-#RSpec.describe 'Creating an whitelist', type: :feature do
+# RSpec.describe 'Creating an whitelist', type: :feature do
 #  before(:each) do
 #    visit new_member_session_path
 #    fill_in 'Email', with: 'testuser@gmail.com'
@@ -25,9 +26,9 @@
 #    click_on 'Create Whitelist'
 #    expect(page).to have_content('Email can\'t be blank')
 #  end
-#end
+# end
 #
-#RSpec.describe 'Editing a whitelist', type: :feature do
+# RSpec.describe 'Editing a whitelist', type: :feature do
 #  before(:each) do
 #    visit new_member_session_path
 #    fill_in 'Email', with: 'testuser@gmail.com'
@@ -52,10 +53,10 @@
 #    click_on 'Update Whitelist'
 #    expect(page).to have_content('Email can\'t be blank')
 #  end
-#end
+# end
 #
 ## Unable to test delete button due to being unable to specify which whitelist to remove
-#RSpec.describe 'Deleting a whitelist', type: :feature do
+# RSpec.describe 'Deleting a whitelist', type: :feature do
 #  scenario 'update inputs' do
 #    visit new_member_session_path
 #    fill_in 'Email', with: 'testuser@gmail.com'
@@ -69,4 +70,4 @@
 #    # click_on 'Remove', match: :last
 #    # expect(page).not_to have_content('reb_pendra@gmail.com')
 #  end
-#end
+# end

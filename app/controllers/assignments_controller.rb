@@ -24,9 +24,9 @@ class AssignmentsController < ApplicationController
 
   # GET/assignments/queue
   def queue
-    @requests_waiting = Request.match_lower(params[:search_name]).where(request_status: 'Unassigned', phone_number: params[:search_phone_number]).where("updated_at > ?", 15.hours.ago).order('created_at ASC')
-    @requests_riding = Request.match_lower(params[:search_name]).where(request_status: 'Assigned Driver', phone_number: params[:search_phone_number]).where("updated_at > ?", 15.hours.ago).order('created_at ASC')
-    @requests_done = Request.match_lower(params[:search_name]).where(request_status: %w[Done Cancelled Missed], phone_number: params[:search_phone_number]).where("updated_at > ?", 15.hours.ago).order('updated_at DESC')
+    @requests_waiting = Request.match_lower(params[:search_name]).where(request_status: 'Unassigned', phone_number: params[:search_phone_number]).where('updated_at > ?', 15.hours.ago).order('created_at ASC')
+    @requests_riding = Request.match_lower(params[:search_name]).where(request_status: 'Assigned Driver', phone_number: params[:search_phone_number]).where('updated_at > ?', 15.hours.ago).order('created_at ASC')
+    @requests_done = Request.match_lower(params[:search_name]).where(request_status: %w[Done Cancelled Missed], phone_number: params[:search_phone_number]).where('updated_at > ?', 15.hours.ago).order('updated_at DESC')
 
     # Check spot in line
     # logger.debug "\nRequests Waiting: #{@requests_waiting.inspect}"

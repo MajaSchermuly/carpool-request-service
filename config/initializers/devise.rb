@@ -26,7 +26,7 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'carpoolrequestservice@gmail.com'
   config.omniauth :google_oauth2,
-                  Rails.application.credentials.dig(:google_oauth_client_id), Rails.application.credentials.dig(:google_oauth_client_secret)
+                  Rails.application.credentials[:google_oauth_client_id], Rails.application.credentials[:google_oauth_client_secret]
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 

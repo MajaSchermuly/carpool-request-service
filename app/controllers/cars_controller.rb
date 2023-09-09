@@ -16,16 +16,14 @@ class CarsController < ApplicationController
     @drivers = Driver.all.where(ndr_id: ndr_id)
     p @drivers
     @drivers.each do |driver|
-      if @cars.nil?
-        @cars = Car.all.where(car_id: driver.car_id)
-      else
-        @cars = @cars + Car.all.where(car_id: driver.car_id)
-      end
+      @cars = if @cars.nil?
+                Car.all.where(car_id: driver.car_id)
+              else
+                @cars + Car.all.where(car_id: driver.car_id)
+              end
     end
 
-    if !@cars.nil?
-      @cars = @cars.uniq
-    end
+    @cars = @cars.uniq unless @cars.nil?
   end
 
   # GET /cars/1 or /cars/1.json
@@ -44,22 +42,18 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
 
-    if params[:driver_ids]
-      if params[:driver_ids].count > 2
-        format.html { redirect_to :new, notice: 'Can only assign up to two drivers' }
-        format.json { head :no_content }
-      end
+    if params[:driver_ids] && (params[:driver_ids].count > 2)
+      format.html { redirect_to :new, notice: 'Can only assign up to two drivers' }
+      format.json { head :no_content }
     end
 
     respond_to do |format|
       if @car.save
         driver_ids = params[:driver_ids] # get the selected driver ids from the form submission
-        if driver_ids
-          driver_ids.each do |driver_id|
-            driver = Driver.find(driver_id)
-            driver.car_id = @car.id # set the car foreign key on the driver object
-            driver.save
-          end
+        driver_ids&.each do |driver_id|
+          driver = Driver.find(driver_id)
+          driver.car_id = @car.id # set the car foreign key on the driver object
+          driver.save
         end
 
         format.html { redirect_to car_url(@car), notice: 'Car was successfully created.' }

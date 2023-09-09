@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 # # frozen_string_literal: true
-# 
+#
 # # location: spec/feature/request_integration_spec.rb
 # require 'rails_helper'
-# 
+#
 # RSpec.describe 'Creating a request', type: :feature do
 #   before(:each) do
 #     visit new_member_session_path
@@ -32,7 +33,7 @@
 #     check 'Start Now?'
 #     click_on 'Create Ndr'
 #   end
-# 
+#
 #   scenario 'valid inputs' do
 #     visit requests_incoming_path
 #     fill_in 'Name:', with: 'Ricardo'
@@ -49,7 +50,7 @@
 #     expect(page).to have_content('3')
 #   end
 # end
-# 
+#
 # RSpec.describe 'Updating a request', type: :feature do
 #   before(:each) do
 #     visit new_member_session_path
@@ -86,7 +87,7 @@
 #     fill_in 'Number of Passengers:', with: 3
 #     click_on 'Create Request'
 #   end
-# 
+#
 #   scenario 'update inputs' do
 #     visit edit_request_path(Request.find_by_phone_number('210-527-0414'))
 #     fill_in 'Pick Up Location:', with: '676 Lubbock St, College Station, TX 77840'
@@ -100,7 +101,7 @@
 #     expect(page).to have_content('2')
 #   end
 # end
-# 
+#
 # RSpec.describe 'Canceling a request', type: :feature do
 #   scenario 'cancel inputs' do
 #     visit new_member_session_path
@@ -152,7 +153,7 @@
 #     expect(page).to have_content('Cancelled')
 #   end
 # end
-# 
+#
 # RSpec.describe 'Deleting a request', type: :feature do
 #   scenario 'delete inputs' do
 #     visit new_member_session_path
