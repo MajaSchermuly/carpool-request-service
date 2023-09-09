@@ -94,7 +94,7 @@ class DriversController < ApplicationController
   # POST /driver/join
   def join_confirm
     @driver = Driver.new(driver_params)
-    @ndr = Ndr.where(params[:ndr_id])
+    @ndr = Ndr.where(ndr_id: params[:ndr_id])
     @member = Member.find_by(member_id: current_member.member_id)
 
     respond_to do |format|
