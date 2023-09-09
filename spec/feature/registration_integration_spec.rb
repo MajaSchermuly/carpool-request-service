@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 # # frozen_string_literal: true
-# 
+#
 # # location: spec/feature/registration_integration_spec.rb
 # require 'rails_helper'
-# 
+#
 # RSpec.describe 'Signing up with Form', type: :system do
 #   let(:email) { Faker::Internet.email }
 #   let(:password) { Faker::Internet.password(min_length: 6) }
@@ -69,7 +70,7 @@
 #     expect(page).to have_content('Email has already been taken')
 #   end
 # end
-# 
+#
 # # RSpec.describe 'Update Registration', type: :system do
 # #  scenario 'valid inputs' do
 # #	visit new_member_registration_path

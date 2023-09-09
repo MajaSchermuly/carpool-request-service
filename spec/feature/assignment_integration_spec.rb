@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 # # frozen_string_literal: true
-# 
+#
 # # location: spec/feature/assignment_integration_spec.rb
 # require 'rails_helper'
-# 
+#
 # RSpec.describe 'Creating an assignment', type: :feature do
 #   before(:each) do
 #     visit new_member_session_path
@@ -45,7 +46,7 @@
 #     fill_in 'Number of Passengers:', with: 3
 #     click_on 'Create Request'
 #   end
-# 
+#
 #   scenario 'valid inputs' do
 #     visit requests_waiting_path
 #     click_on 'Assign'
@@ -60,7 +61,7 @@
 #     expect(page).to have_content('3')
 #   end
 # end
-# 
+#
 # RSpec.describe 'Updating an assignment', type: :feature do
 #   before(:each) do
 #     visit new_member_session_path
@@ -113,7 +114,7 @@
 #     select('Toyota Camry Red', from: 'assignment_car_id')
 #     click_on 'Create Assignment'
 #   end
-# 
+#
 #   scenario 'update inputs' do
 #     visit edit_assignment_path(Assignment.find_by_request_id(Request.find_by_phone_number('2105270414')))
 #     select('Toyota Prius Blue', from: 'assignment_car_id')
@@ -127,7 +128,7 @@
 #     expect(page).to have_content('3')
 #   end
 # end
-# 
+#
 # RSpec.describe 'Marking an assignment as Done', type: :feature do
 #   scenario 'change status' do
 #     visit new_member_session_path
@@ -184,7 +185,7 @@
 #     expect(page).to have_content('719 S Rosemary Dr, Bryan, TX 77802')
 #   end
 # end
-# 
+#
 # RSpec.describe 'Deleting an assignment', type: :feature do
 #   scenario 'delete inputs' do
 #     visit new_member_session_path

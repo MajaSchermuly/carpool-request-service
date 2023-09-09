@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 # # frozen_string_literal: true
-# 
+#
 # # location: spec/feature/driver_integration_spec.rb
 # require 'rails_helper'
-# 
+#
 # RSpec.describe 'Joining ndr as driver', type: :feature do
 #   scenario 'valid join' do
 #     visit new_member_session_path
@@ -39,7 +40,7 @@
 #     expect(page).to have_content('Leave')
 #   end
 # end
-# 
+#
 # RSpec.describe 'Leaving ndr as driver', type: :feature do
 #   scenario 'valid leave' do
 #     visit new_member_session_path

@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 # # frozen_string_literal: true
-# 
+#
 # # location: spec/feature/car_integration_spec.rb
 # require 'rails_helper'
-# 
+#
 # RSpec.describe 'Creating a car', type: :feature do
 #   before(:each) do
 #     visit new_member_session_path
@@ -26,7 +27,7 @@
 #     fill_in 'Password confirmation', with: 'neone99'
 #     click_on 'Sign up'
 #   end
-# 
+#
 #   scenario 'valid inputs' do
 #     visit new_car_path
 #     fill_in 'Make', with: 'Toyota'
@@ -41,7 +42,7 @@
 #     expect(page).to have_content('PZ65 BYV')
 #   end
 # end
-# 
+#
 # RSpec.describe 'Updating a car', type: :feature do
 #   before(:each) do
 #     visit new_member_session_path
@@ -71,7 +72,7 @@
 #     fill_in 'Plate number', with: 'PZ65 BYV'
 #     click_on 'Create Car'
 #   end
-# 
+#
 #   scenario 'update inputs' do
 #     visit edit_car_path(Car.find_by_make('Toyota'))
 #     fill_in 'Plate number', with: 'PZ6S BYX'
@@ -83,7 +84,7 @@
 #     expect(page).to have_content('PZ6S BYX')
 #   end
 # end
-# 
+#
 # RSpec.describe 'Deleting a car', type: :feature do
 #   scenario 'delete inputs' do
 #     visit new_member_session_path

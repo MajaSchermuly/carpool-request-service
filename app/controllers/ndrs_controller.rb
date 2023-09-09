@@ -86,17 +86,17 @@ class NdrsController < ApplicationController
     end
 
     requests.each do |r|
-      r.update_attribute(:request_status, "Done")
+      r.update_attribute(:request_status, 'Done')
     end
 
-    unassigned = Request.where(request_status: "Unassigned")
+    unassigned = Request.where(request_status: 'Unassigned')
     unassigned.each do |u|
-      u.update_attribute(:request_status, "Done")
+      u.update_attribute(:request_status, 'Done')
     end
 
-    unassigned = Request.where(request_status: "Assigned Driver")
+    unassigned = Request.where(request_status: 'Assigned Driver')
     unassigned.each do |u|
-      u.update_attribute(:request_status, "Done")
+      u.update_attribute(:request_status, 'Done')
     end
 
     all_requests = Request.all

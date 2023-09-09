@@ -20,7 +20,7 @@ class DriversController < ApplicationController
 
   # GET /driver/new
   def new
-    latest_ndr = Ndr.where(is_active: true).last  
+    latest_ndr = Ndr.where(is_active: true).last
     @driver = Driver.new(ndr_id: latest_ndr&.id || params[:ndr_id])
   end
 
@@ -122,9 +122,7 @@ class DriversController < ApplicationController
     assign = Assignment.where(member_id: current_member.member_id).last
     if assign
       req = Request.where(request_id: assign.request_id).first
-      if req
-        req.update_attribute(:request_status, "Unassigned")
-      end
+      req&.update_attribute(:request_status, 'Unassigned')
 
       assign.destroy
     end

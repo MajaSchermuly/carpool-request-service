@@ -17,6 +17,6 @@ class Ndr < ApplicationRecord
   end
 
   def default_values
-    self.accept_ng_station = false if self.accept_ng_station.nil?
+    self.accept_ng_station = false if accept_ng_station.nil?
   end
 end

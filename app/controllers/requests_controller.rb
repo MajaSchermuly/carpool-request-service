@@ -84,18 +84,18 @@ class RequestsController < ApplicationController
   # POST /requests or /requests.json
   def create
     existing_request = Request.where(phone_number: request_params[:phone_number])
-                              .where("updated_at > ?", 15.hours.ago)
+                              .where('updated_at > ?', 15.hours.ago)
                               .first
 
     @request = Request.new(request_params)
-   
+
     respond_to do |format|
       if existing_request
         if current_member
           format.html { redirect_to requests_incoming_url, notice: 'Already requested a ride tonight' }
-          format.json { head :no_content}
+          format.json { head :no_content }
         end
-   
+
         format.html { redirect_to requests_incoming_url, notice: 'Already requested a ride tonight' }
         format.json { head :no_content }
       elsif @request.save
@@ -103,12 +103,12 @@ class RequestsController < ApplicationController
         next_queue_pos = Request.where(request_status: 'Unassigned').count + 1
         @request.update_attribute(:queue_pos, next_queue_pos)
         @request.update_attribute(:request_status, 'Unassigned')
-   
+
         if current_member
           format.html { redirect_to requests_waiting_url, notice: 'Request was successfully created.' }
           format.json { head :no_content }
         end
-   
+
         search_query_path = "/queue/?search_name=#{@request.name}&search_phone_number=#{@request.phone_number}"
         format.html { redirect_to search_query_path, notice: 'Request was successfully created.' }
         format.json { head :no_content }
@@ -117,7 +117,7 @@ class RequestsController < ApplicationController
           format.html { render :incoming, status: :unprocessable_entity }
           format.json { render json: @request.errors, status: :unprocessable_entity }
         end
-   
+
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
@@ -149,7 +149,7 @@ class RequestsController < ApplicationController
   # PUT /requests/1/riding
   def update_to_riding
     @request = Request.find(params[:id])
-    @request.update(request_status: "Assigned Driver", time_cancelled: nil)
+    @request.update(request_status: 'Assigned Driver', time_cancelled: nil)
   end
 
   # GET /requests/1/status
@@ -206,9 +206,7 @@ class RequestsController < ApplicationController
     @request.update_attribute(:time_cancelled, nil)
 
     assign = Assignment.where(request_id: @request.id)
-    assign.each do |a|
-      a.destroy
-    end
+    assign.each(&:destroy)
 
     respond_to do |format|
       if current_member
