@@ -3,6 +3,7 @@
 class MemberController < ApplicationController
   before_action :set_driver, only: %i[show edit update destroy]
   # devise :omniauthable, omniauth_providers: [:google_oauth2]
+  before_action :authenticate_member!
 
   def index; end
 

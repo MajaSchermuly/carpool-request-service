@@ -5,6 +5,7 @@ require 'date'
 class NdrsController < ApplicationController
   before_action :set_ndr, only: %i[show edit update destroy]
   helper_method :get_join_status
+  before_action :authenticate_member!
   # GET /ndrs or /ndrs.json
   def index
     @ndrs = if current_member.is_admin || current_member.is_supervisor

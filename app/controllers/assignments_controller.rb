@@ -22,6 +22,7 @@ class AssignmentsController < ApplicationController
     @requests = Request.where('created_at > ? and created_at < ?', @ndr.start_time, @ndr.end_time).where(request_status: %w[Done Cancelled Missed]).order('updated_at DESC') if @ndr
   end
 
+  # No auth here
   # GET/assignments/queue
   def queue
     @requests_waiting = Request.match_lower(params[:search_name]).where(request_status: 'Unassigned', phone_number: params[:search_phone_number]).where('updated_at > ?', 15.hours.ago).order('created_at ASC')

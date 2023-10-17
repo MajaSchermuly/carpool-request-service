@@ -3,6 +3,7 @@
 class DriversController < ApplicationController
   before_action :set_driver, only: %i[show edit update destroy]
   before_action :authenticate_driver!, only: :checkin
+  before_action :authenticate_member!
   # GET /drivers or /drivers.json
   def index
     @drivers = Driver.all
