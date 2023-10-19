@@ -25,7 +25,7 @@ Rails.application.configure do
   }
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false # TODO : If we ever get the testing site up, set to true
   config.action_controller.perform_caching = false
   config.cache_store = :null_store
 
