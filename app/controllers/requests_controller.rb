@@ -6,6 +6,7 @@ class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
   before_action :set_request_id, only: %i[status done cancel update_waiting update_riding]
   before_action :insure_active_ndr, only: %i[new]
+  before_action :authenticate_member!, except: %i[create cancel]
 
   # GET /requests or /requests.json
   def index
@@ -81,6 +82,7 @@ class RequestsController < ApplicationController
   # GET /requests/1/edit
   def edit; end
 
+  # No need to authenticate here
   # POST /requests or /requests.json
   def create
     existing_request = Request.where(phone_number: request_params[:phone_number])

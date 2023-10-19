@@ -23,8 +23,8 @@
 
   <div class="field">
     <%= f.label :phone %>
-    <%= f.text_field :phone %>
-  </div>
+    <%= f.text_field :phone, class: 'phone-number' %>
+	</div>
 
   <div class="Address Field">
     <div class="field">
@@ -44,16 +44,16 @@
     </div>
     <div class="field">
       <%= f.label :emergency_1_phone_number %> 
-      <%= f.telephone_field :emergency_1_phone_number %>
-    </div>
+      <%= f.telephone_field :emergency_1_phone_number, class: 'phone-number' %>
+	  </div>
     <div class="field">
       <%= f.label :emergency_2_full_name %> 
       <%= f.text_field :emergency_2_full_name %>
     </div>
     <div class="field">
       <%= f.label :emergency_2_phone_number %> 
-      <%= f.text_field :emergency_2_phone_number %>
-    </div>
+      <%= f.text_field :emergency_2_phone_number, class: 'phone-number' %>
+	  </div>
   </div>
 
   <br><br><hr>
@@ -63,8 +63,8 @@
   <div class = "Parent Information">
     <div class="field">
       <%= f.label :parent_number %> 
-      <%= f.telephone_field :parent_number %>
-    </div>
+      <%= f.telephone_field :parent_number, class: 'phone-number' %>
+	  </div>
     <div class="field">
       <%= f.label :parent_street_address %> 
       <%= f.text_field :parent_street_address %>
