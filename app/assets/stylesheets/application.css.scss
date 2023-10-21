@@ -436,6 +436,17 @@ a:visited:not(.link) {color: #565656;}
   div {width: 10vw;}
 }
 
+.nav-menu {
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: 1px white solid;
+    margin-right: 10px;
+
+    option {
+        background-color: #484848;
+    }
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                   LAYOUT                                   */
 /* -------------------------------------------------------------------------- */
@@ -876,12 +887,14 @@ a:visited:not(.link) {color: #565656;}
     height: 100vh;
     overflow-x: hidden;
   }
-  
+
   .title {
-    background-color: #484848;
-    height: 6vh;
-    box-shadow: none;
-    font-size: 3vh;
+      background-color: #484848;
+      height: 6vh;
+      box-shadow: none;
+      font-size: 3vh;
+      justify-content: left;
+      padding-left: 10%;
   }
 
   .footer {

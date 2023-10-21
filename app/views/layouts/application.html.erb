@@ -71,8 +71,24 @@
         <%# Mobile Menu %>
         <% if current_member %>
           <div class="mobile-menu">
-            <div class="arrow">▼</div>
-            <div>Menu</div>
+          <select class="nav-menu" id="nav-menu">
+            <option>Menu</option>
+            <option value="/">Home</option>
+            <% if current_member %>
+              <option value="/ndrs">NDR</option>
+              <option value="/incoming">Phone Room</option>
+              <option value="/member/rider_info">Assigned Rider</option>
+              <option value="/checkin">Check In</option>
+              <option value="/members/edit">Edit Account</option>
+              <option value="/check_points">Your Points</option>
+            </div>
+              <% end %>
+              <% if current_member and current_member.is_admin%>
+                <option value="/whitelists">Admin</option>
+                <option value="/member/overview">Member Overview</option>
+              <% end %>
+          </select>
+          <%= button_to "Logout", destroy_member_session_path, :class => "logout", data: {turbo: "false"}, method: :delete %>
           </div>
         <% end %>
       </div>
@@ -101,6 +117,16 @@
     <% end %>
   </footer>
 
+  <!-- Menu -->
+
+  <script>
+  document.getElementById("nav-menu").addEventListener("change", function() {
+    var selectedOption = this.value;
+    window.location.href = selectedOption;
+  });
+  </script>
+
+  <!-- Phone Number Parsing -->
   <script>
   const isNumericInput = (event) => {
 	const key = event.keyCode;
