@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
   before_action :set_request, only: %i[show edit update destroy]
   before_action :set_request_id, only: %i[status done cancel update_waiting update_riding]
   before_action :insure_active_ndr, only: %i[new]
-  before_action :authenticate_member!, except: %i[create cancel]
+  before_action :authenticate_member!, except: %i[create cancel new]
 
   # GET /requests or /requests.json
   def index
