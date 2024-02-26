@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_09_013852) do
+ActiveRecord::Schema.define(version: 2023_04_19_024738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2023_09_09_013852) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "display_id"
-    t.integer "ndr_id"
+    t.integer "ndr_id", null: false
   end
 
   create_table "drivers", primary_key: "driver_id", force: :cascade do |t|

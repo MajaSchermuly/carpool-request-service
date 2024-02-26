@@ -105,6 +105,11 @@ class NdrsController < ApplicationController
       r.update_attribute(:phone_number, nil)
     end
 
+    cars = Car.where(ndr_id: params[:ndr_id])
+    cars.each do |c|
+      c.destroy
+    end
+
     respond_to do |format|
       format.html { redirect_to ndrs_url, notice: 'Ndr was successfully stopped.' }
       format.json { head :no_content }
